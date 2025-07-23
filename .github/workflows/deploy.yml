@@ -15,5 +15,7 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
+      - run: ssh-keyscan -p 22 poire.beget.tech >> "$HOME/.ssh/known_hosts"
+
       # Deploy
       - run: rsync --omit-dir-times -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . poire@poire.beget.tech:/home/p/poire/hereandnowcreation.art/public_html/palette
