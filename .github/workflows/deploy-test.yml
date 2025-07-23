@@ -1,0 +1,33 @@
+name: Emotion Palette Test Deploy
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Клонируем репозиторий
+      - uses: actions/checkout@v3
+
+      # Устанавливаем Node.js
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 23
+
+      # Устанавливаем зависимости
+      - run: npm ci
+
+      # Собираем проект
+      - run: npm run build
+
+      # Настраиваем SSH
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.HOSTING }}" > "$HOME/.ssh/id_rsa"
+      - run: chmod 600 "$HOME/.ssh/id_rsa"
+      - run: ssh-keyscan -p 22 poire.beget.tech >> "$HOME/.ssh/known_hosts"
+
+      # Деплоим содержимое сборки
+      - run: rsync --omit-dir-times -e "ssh -p 22 -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete dist/ poire@poire.beget.tech:/home/p/poire/poire.beget.tech/public_html/palette
