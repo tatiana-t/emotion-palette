@@ -1,0 +1,6 @@
+.app {
+  width: 100%;
+  min-height: 100dvh;
+  padding: 40px;
+  transition: background-color, 0.4s;
+}

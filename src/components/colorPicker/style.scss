@@ -1,0 +1,27 @@
+.color-picker {
+  display: flex;
+  align-items: center;
+  //   gap: 8px;
+  overflow-x: auto;
+  padding: 8px;
+  &__label {
+    display: block;
+    width: 150px;
+    height: 70px;
+
+    border-radius: 8px;
+    // border: 4px solid white;
+    // outline: 2px solid transparent;
+    transition: transform, 0.2s;
+    &_active {
+      //   border: 4px solid white;
+      //   outline: 6px solid lightgrey;
+      transform: scale(1.2);
+      z-index: 2;
+      transition: none;
+    }
+  }
+  &__input {
+    display: none;
+  }
+}
