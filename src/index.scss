@@ -14,6 +14,28 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // scrollbar-color: rgba(0, 0, 0, 0.6) transparent;
+  // scrollbar-width: thin;
+
+  --scrollbar-color-thumb: rgba(0, 0, 0, 0.4);
+  --scrollbar-color-track: transparent;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 6px;
+  /* Legacy browsers with `::-webkit-scrollbar-*` support */
+  // @supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color-thumb);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-color-track);
+  }
+  ::-webkit-scrollbar {
+    max-width: var(--scrollbar-width-legacy);
+    max-height: var(--scrollbar-width-legacy);
+  }
+  // }
 }
 
 a {
@@ -54,19 +76,19 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  // background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
-}
+// button:hover {
+//   border-color: #646cff;
+// }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+// button:focus,
+// button:focus-visible {
+//   outline: 4px auto -webkit-focus-ring-color;
+// }
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -79,6 +101,6 @@ button:focus-visible {
   }
 
   button {
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
   }
 }

@@ -1,31 +1,112 @@
-import ColorPicker from 'src/components/colorPicker';
-import useStore from 'src/store';
-import { TextArea } from '@gravity-ui/uikit';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import classnames from 'classnames';
+import { ArrowRight } from '@gravity-ui/icons';
+import ColorPicker from 'src/pages/create/screen/colorPicker';
+import Questions from 'src/pages/create/screen/questions';
+import EmotionSelect from 'src/pages/create/screen/emotionSelect';
+import useStore from 'src/store/data';
+import useUIStore from 'src/store/ui';
+
 import './styles.scss';
 
+type IStepId = 'ColorPicker' | 'Questions' | 'Emotion';
+
+interface IStep {
+  stepId: IStepId;
+  isAnswered: boolean;
+  component: React.FC<{ className: string }>;
+}
+
+// const initialSteps: IStep[] = ;
+
 const PageCreate: React.FC = () => {
-  const updateAnswer = useStore(({ updateAnswer }) => updateAnswer);
-  const setAnswer = (id: string, answer: string) => {
-    updateAnswer(id, answer);
+  const navigate = useNavigate();
+  const today = useStore((state) => state.today);
+  const addHistoryItem = useStore((state) => state.addHistoryItem);
+
+  const { currentStep, incrementCurrentStep, clearTodayAdd } = useStore((state) => state);
+
+  const [steps, setSteps] = useState<IStep[]>([
+    {
+      stepId: 'ColorPicker',
+      isAnswered: false,
+      component: ColorPicker,
+    },
+    {
+      stepId: 'Questions',
+      isAnswered: false,
+      component: Questions,
+    },
+    {
+      stepId: 'Emotion',
+      isAnswered: false,
+      component: EmotionSelect,
+    },
+  ]);
+
+  const updateStep = (isAnswered: boolean) => {
+    setSteps(
+      steps.map((step: IStep, i) => {
+        if (i === currentStep) {
+          return {
+            ...step,
+            isAnswered,
+          };
+        }
+        return step;
+      }),
+    );
+  };
+
+  useEffect(() => {
+    if (today.color) {
+      updateStep(true);
+    }
+  }, [today.color]);
+  // const Step = steps[currentStep].stepId;
+  const CurrentStepComponent = steps[currentStep].component;
+
+  const setIsAnswered = (stepId: string, isAnswered: boolean) => {
+    const updatedSteps = steps.map((item) => {
+      if (item.stepId === stepId) {
+        item.isAnswered = isAnswered;
+      }
+      return item;
+    });
+    setSteps(updatedSteps);
+  };
+
+  const clearAdd = () => {
+    addHistoryItem(today);
+    // const list = steps.map((item) => ({ ...item, isAnswered: false }));
+    // console.log('list', list === steps);
+    // setSteps(list);
+    clearTodayAdd();
+  };
+
+  const onNextStep = () => {
+    if (currentStep === steps.length - 1) {
+      clearAdd();
+      navigate('/history');
+      return;
+    }
+    incrementCurrentStep();
   };
   return (
-    <div className="page-create">
-      <h2>Выберите цвет, который наиболее резонирует с вашим текущим состоянием</h2>
-      <ColorPicker />
-      <div className="page-create__item">
-        <label htmlFor="assotiasions">Запишите свои ассоциации с выбранным цветом</label>
-        <TextArea
-          id="assotiasions"
-          view="normal"
-          size="l"
-          rows={5}
-          onChange={(e) => setAnswer('1', e.target.value)}
-        ></TextArea>
-      </div>
-      <div className="page-create__item">
-        <label htmlFor="talk">Что этот цвет хочет вам сказать?</label>
-        <TextArea id="talk" view="normal" size="l" rows={5} onChange={(e) => setAnswer('2', e.target.value)}></TextArea>
-      </div>
+    <div className="page-create" style={{ backgroundColor: today.color }}>
+      <button
+        className={classnames('page-create__button', {
+          'page-create__button_visible': steps[currentStep].isAnswered,
+        })}
+        onClick={onNextStep}
+      >
+        <ArrowRight />
+      </button>
+      <CurrentStepComponent
+        className="page-create__palette"
+        onAnswer={(isAnswered) => setIsAnswered(steps[currentStep].stepId, isAnswered)}
+      />
     </div>
   );
 };

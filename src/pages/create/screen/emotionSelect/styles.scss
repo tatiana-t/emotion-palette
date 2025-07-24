@@ -1,0 +1,10 @@
+.emotion-select {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .g-select-control__button::after {
+    background-color: #fff;
+  }
+}

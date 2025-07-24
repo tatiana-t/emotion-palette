@@ -1,18 +1,54 @@
-import useStore from 'src/store';
-import { Button } from '@gravity-ui/uikit';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
+import { SegmentedRadioGroup } from '@gravity-ui/uikit';
 import CreatePage from 'src/pages/create';
-import './App.css';
+import HistoryPage from 'src/pages/history';
+import './App.scss';
 
-// const SubmitButton = <Button view="action" size="l" />;
 function App() {
-  const color = useStore(({ today }) => today.color);
+  const [currentSection, setCurrentSection] = useState('/');
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (currentSection === '/') {
+      navigate('/');
+    } else {
+      navigate('/history');
+    }
+  }, [currentSection]);
+
+  const updateSection = () => {
+    if (location.pathname !== currentSection) {
+      setCurrentSection(location.pathname);
+    }
+  };
+  useEffect(() => {
+    updateSection();
+  }, [location]);
+
+  useEffect(() => {
+    updateSection();
+  }, []);
+
+  const onUpdate = (value: string) => {
+    setCurrentSection(value);
+  };
 
   return (
-    <div className="app" style={{ backgroundColor: color }}>
-      <CreatePage />
-      <Button view="action" size="m">
-        button
-      </Button>
+    <div className="app">
+      <div className="app__navigator">
+        <SegmentedRadioGroup onUpdate={onUpdate} value={currentSection}>
+          <SegmentedRadioGroup.Option value="/">Добавить</SegmentedRadioGroup.Option>
+          <SegmentedRadioGroup.Option value="/history">История</SegmentedRadioGroup.Option>
+        </SegmentedRadioGroup>
+      </div>
+      <Routes>
+        <Route index element={<CreatePage />}></Route>
+        <Route path="/history" element={<HistoryPage />}></Route>
+      </Routes>
     </div>
   );
 }

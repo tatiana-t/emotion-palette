@@ -19,15 +19,24 @@ interface IStore {
   historyList: IDay[];
   today: IDay;
 
-  updateCurrentDay: (day: Partial<IDay>) => void;
+  updateToday: (day: Partial<IDay>) => void;
   updateAnswer: (qId: string, answer: string) => void;
 }
-const useStore = create<IStore>()(
+
+interface IData {
+  data: IStore;
+  ui: {};
+}
+interface IStoreUI {
+  currentStep: number;
+  incrementStep: () => void;
+}
+const useStore = create<IStore & IStoreUI>()(
   devtools((set) => ({
     historyList: [],
     today: { ...initialDay },
 
-    updateCurrentDay: (day: IDay) =>
+    updateToday: (day: IDay) =>
       set((state) => {
         if (!state.today.date) {
           const date = new Date();
@@ -44,6 +53,12 @@ const useStore = create<IStore>()(
           today: { ...today },
         };
       }),
+
+    currentStep: 0,
+
+    incrementCurrentStep: () => {
+      return set((state) => ({ currentStep: state.currentStep + 1 }));
+    },
   })),
 );
 
