@@ -10,7 +10,7 @@ import './index.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/palette">
       <ThemeProvider theme="light">
         <App />
       </ThemeProvider>
