@@ -23,10 +23,10 @@ interface IStore {
   updateAnswer: (qId: string, answer: string) => void;
 }
 
-interface IData {
-  data: IStore;
-  ui: {};
-}
+// interface IData {
+//   data: IStore;
+//   ui: {};
+// }
 interface IStoreUI {
   currentStep: number;
   incrementStep: () => void;

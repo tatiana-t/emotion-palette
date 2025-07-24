@@ -6,7 +6,6 @@ import ColorPicker from 'src/pages/create/screen/colorPicker';
 import Questions from 'src/pages/create/screen/questions';
 import EmotionSelect from 'src/pages/create/screen/emotionSelect';
 import useStore from 'src/store/data';
-import useUIStore from 'src/store/ui';
 
 import './styles.scss';
 
@@ -15,7 +14,7 @@ type IStepId = 'ColorPicker' | 'Questions' | 'Emotion';
 interface IStep {
   stepId: IStepId;
   isAnswered: boolean;
-  component: React.FC<{ className: string }>;
+  component: React.FC<{ onAnswer: (isAnswered: boolean) => void }>;
 }
 
 // const initialSteps: IStep[] = ;
@@ -104,8 +103,8 @@ const PageCreate: React.FC = () => {
         <ArrowRight />
       </button>
       <CurrentStepComponent
-        className="page-create__palette"
-        onAnswer={(isAnswered) => setIsAnswered(steps[currentStep].stepId, isAnswered)}
+        // className="page-create__palette"
+        onAnswer={(isAnswered: boolean) => setIsAnswered(steps[currentStep].stepId, isAnswered)}
       />
     </div>
   );

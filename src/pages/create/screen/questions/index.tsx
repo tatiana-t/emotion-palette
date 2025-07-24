@@ -1,7 +1,6 @@
 import { TextArea } from '@gravity-ui/uikit';
 import useStore from 'src/store/data';
 import './styles.scss';
-import useUIStore from 'src/store/ui';
 
 // const questionsList = [
 //   {
