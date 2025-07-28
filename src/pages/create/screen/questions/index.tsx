@@ -48,6 +48,7 @@ const Questions: React.FC<Props> = ({ onAnswer }) => {
                 size="l"
                 rows={7}
                 placeholder={item.text}
+                value={item.answer}
                 className="questions__field"
                 onChange={(e) => setAnswer(item.id, e.target.value)}
               ></TextArea>

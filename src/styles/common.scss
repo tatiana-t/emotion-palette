@@ -1,0 +1,74 @@
+:root {
+  font-family: Jost, system-ui, sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  // color-scheme: light dark;
+  // color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // scrollbar-color: rgba(0, 0, 0, 0.6) transparent;
+  // scrollbar-width: thin;
+
+  --scrollbar-color-thumb: rgba(0, 0, 0, 0.4);
+  --scrollbar-color-track: transparent;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 6px;
+
+  /* Legacy browsers with `::-webkit-scrollbar-*` support */
+  @supports selector(::-webkit-scrollbar) {
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-color-thumb);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: var(--scrollbar-color-track);
+    }
+    ::-webkit-scrollbar {
+      max-width: var(--scrollbar-width-legacy);
+      max-height: var(--scrollbar-width-legacy);
+    }
+  }
+}
+
+#root {
+  width: 100%;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &.g-root {
+    font-size: var(--g-text-body-2-font-size);
+  }
+}
+
+.container {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    // color: #747bff;
+  }
+
+  button {
+    // background-color: #f9f9f9;
+  }
+}

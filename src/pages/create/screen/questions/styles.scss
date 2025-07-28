@@ -1,19 +1,18 @@
 .questions {
   //   max-width: 100%;
   color: #444444;
-
-  height: 100%;
+  margin-top: auto;
+  // height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   &__list {
-    padding: 0 16px;
+    padding: 0 16px 8px;
     // padding-left: 500px;
     display: flex;
     gap: 16px;
     max-width: 100%;
     overflow-x: auto;
-    padding-bottom: 8px;
     scrollbar-width: none;
   }
   &__item {
@@ -30,6 +29,10 @@
     margin-bottom: 12px;
   }
   .g-text-area__control {
-    background-color: #e8e8e8;
+    font-size: 16px;
+    background-color: #f6f6f6;
+  }
+  .g-text-area__content {
+    border: none;
   }
 }

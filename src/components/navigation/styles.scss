@@ -1,0 +1,43 @@
+.navigation {
+  position: fixed;
+  right: 200px;
+  top: 0;
+  color: #fff;
+  &__main {
+    padding: 90px 6px 30px;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: rgba(0, 0, 0, 0.16);
+    margin-bottom: 45px;
+  }
+  &__item {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+    transition: filter, 0.2s;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:hover {
+      filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.8));
+    }
+    &_active {
+      filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.8));
+      color: #fff;
+      // box-shadow: 0 2px 10px #ffffff53;
+    }
+    &:visited {
+      color: inherit;
+    }
+  }
+  &__sup {
+    .navigation__item {
+      opacity: 0;
+      color: white;
+      &_visible {
+        opacity: 1;
+      }
+    }
+  }
+}

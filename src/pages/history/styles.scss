@@ -1,3 +1,121 @@
 .page-history {
-  padding-top: 80px;
+  height: 100%;
+  overflow-y: auto;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 1040px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30vh 20px 20px;
+
+    gap: 40px 0;
+  }
+  &__row-wrapper {
+    // margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__row {
+    display: flex;
+    // justify-content: center;
+    gap: 3%;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    // &::after {
+    //   content: '';
+    //   width: 30%;
+    //   min-width: 310px;
+    //   height: 0;
+    //   // margin-left: auto;
+    // }
+  }
+  &__item {
+    width: 30%;
+    min-width: 310px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 16px;
+    transition: background-color, 0.2s;
+
+    &:hover {
+      background-color: #fff;
+    }
+    &_active {
+      background-color: #fff;
+      // border-bottom-left-radius: 0;
+      // border-bottom-right-radius: 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+  &__color {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+  &__title {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  &__text {
+    font-size: 18px;
+  }
+  &__description-wrapper {
+    height: 0;
+    border-radius: 16px;
+    transition: height, 0.2s;
+    // padding: 20px 0 0;
+    overflow: hidden;
+    // margin-bottom: 40px;
+    // & > div {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    // }
+  }
+  &__description {
+    width: 100%;
+    background-color: #fff;
+
+    padding: 32px;
+    // margin-bottom: 40px;
+    // &_left {
+    //   border-top-left-radius: 0;
+    // }
+    // &_right {
+    //   border-top-right-radius: 0;
+    // }
+  }
+
+  &__description-item {
+    margin-bottom: 32px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__description-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  &__description-text {
+    font-size: 16px;
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: auto;
+  }
 }

@@ -1,0 +1,15 @@
+.app {
+  --glass-border-color: rgba(214, 214, 214, 0.6);
+  --glass-gradient: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.15));
+  --glass-background: rgba(255, 255, 255, 0.2);
+  --glass-color: white;
+
+  --vh: 1vh;
+
+  &.theme_dark {
+    --glass-border-color: rgba(0, 0, 0, 0.04);
+    --glass-gradient: linear-gradient(to top, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.12) 70%, rgba(0, 0, 0, 0.09));
+    --glass-background: rgba(0, 0, 0, 0.1);
+    // --glass-color: #444;
+  }
+}

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import chroma from 'chroma-js';
 import useStore from 'src/store/data';
 import './styles.scss';
 
@@ -42,11 +43,11 @@ function hslToRgb(h: number, s: number, l: number) {
 
 const getColorsByCircle = () => {
   const colors = [];
-  for (let hue = 1; hue < 310; hue += 15) {
+  for (let hue = 1; hue < 310; hue += 35) {
     const shades = [];
 
-    for (let i = 1; i <= 7; i++) {
-      const step = i / 7;
+    for (let i = 1; i <= 3; i++) {
+      const step = i / 3;
       let saturation = 0.9;
       let lightness = 0.97 - step * 0.85; // от светлого к тёмному
 
@@ -76,9 +77,30 @@ const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
     onAnswer(!!color);
   };
 
+  const setDark = () => {
+    if (!selectedColor) return;
+
+    const isDarkColor = chroma(selectedColor).luminance() < 0.5;
+    if (!isDarkColor) {
+      document.querySelector('.app')?.classList.add('theme_dark');
+    } else {
+      document.querySelector('.app')?.classList.remove('theme_dark');
+    }
+  };
+
+  useEffect(() => {
+    setDark();
+  }, [selectedColor]);
+
   return (
     <div className={classnames('color-picker')}>
-      <div className="color-picker__title">Выберите цвет, который наиболее резонирует с вашим текущим состоянием</div>
+      <div className="container">
+        {!selectedColor && (
+          <div className="color-picker__title">
+            Выберите цвет, который наиболее резонирует с вашим текущим состоянием
+          </div>
+        )}
+      </div>
       <div className="color-picker__list">
         {getColorsByCircle().map((colorGroup, i) => {
           return (
