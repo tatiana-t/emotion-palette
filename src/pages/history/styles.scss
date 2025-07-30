@@ -35,6 +35,9 @@
     border-radius: 16px;
     transition: background-color, 0.2s;
 
+    &:last-child {
+      margin-right: auto;
+    }
     &:hover {
       background-color: #fff;
     }
