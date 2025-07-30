@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import classnames from 'classnames';
 import chroma from 'chroma-js';
 import useStore from 'src/store/data';
