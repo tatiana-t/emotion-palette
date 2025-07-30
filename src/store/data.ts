@@ -1,208 +1,56 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import list from './testData';
+import type { IEmotion } from 'src/types';
+import questionList from 'src/data/questions';
+// const questionsList: IQuestion[] = [
+//   {
+//     id: '1',
+//     text: 'Запишите свои ассоциации с выбранным цветом',
+//     answer: '',
+//   },
+//   {
+//     id: '2',
+//     text: 'Что этот цвет хочет вам сказать?',
+//     answer: '',
+//   },
+//   {
+//     id: '3',
+//     text: 'Какое настроение у этого цвета?',
+//     answer: '',
+//   },
+// ];
 
-interface IQuestion {
-  id: string;
-  text: string;
-  answer: string;
-}
-
-const questionsList: IQuestion[] = [
-  {
-    id: '1',
-    text: 'Запишите свои ассоциации с выбранным цветом',
-    answer: '',
-  },
-  {
-    id: '2',
-    text: 'Что этот цвет хочет вам сказать?',
-    answer: '',
-  },
-  {
-    id: '3',
-    text: 'Какое настроение у этого цвета?',
-    answer: '',
-  },
-];
-
-export interface IDay {
-  id?: string;
-  date: string;
-  color: string;
-  description: IQuestion[];
-  emotion: string;
-}
-
-const initialDay: IDay = {
+const initialDay: IEmotion = {
   date: '',
   color: '',
-  description: questionsList,
+  description: [],
   emotion: '',
 };
 
 interface IStore {
-  historyList: IDay[];
-  today: IDay;
+  historyList: IEmotion[];
+  today: IEmotion;
 
   currentStep: number;
   isNextStepAvailable: boolean;
   isPrevStepAvailable: boolean;
+
   updateNavigationAvailable: (key: Record<'isNextStepAvailable' | 'isPrevStepAvailable', boolean>) => void;
   incrementCurrentStep: () => void;
   decrementCurrentStep: () => void;
 
-  updateToday: (day: Partial<IDay>) => void;
-  // updateAnswer: (qId: string, answer: string) => void;
+  updateToday: (day: Partial<IEmotion>) => void;
   updateTodayDescription: (id: string, answer: string) => void;
 
-  addHistoryItem: (item: IDay) => void;
+  addHistoryItem: (item: IEmotion) => void;
   clearTodayAdd: () => void;
 }
 
 const useStore = create<IStore>()(
   devtools((set) => ({
-    historyList: [
-      {
-        date: '28.07.2025',
-        color: 'rgb(10, 100, 195)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: '',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: 'asdfs',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Радость',
-        id: '77',
-      },
-      {
-        date: '28.07.2025',
-        color: 'rgb(103, 173, 247)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: 'zxcvzxcv',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: 'asdfasdf',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Радость',
-        id: '41',
-      },
-      {
-        date: '28.07.2025',
-        color: 'rgb(10, 195, 75)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: 'zdfgdfgd',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: 'xfgdfgf',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Радость',
-        id: '54',
-      },
-      {
-        date: '28.07.2025',
-        color: 'rgb(201, 103, 247)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: 'fhdfgdhfg',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: '',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Печаль',
-        id: '29',
-      },
-      {
-        date: '28.07.2025',
-        color: 'rgb(201, 103, 247)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: 'fhdfgdhfg',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: '',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Печаль',
-        id: '79',
-      },
-      {
-        date: '28.07.2025',
-        color: 'rgb(201, 103, 247)',
-        description: [
-          {
-            id: '1',
-            text: 'Запишите свои ассоциации с выбранным цветом',
-            answer: 'fhdfgdhfg',
-          },
-          {
-            id: '2',
-            text: 'Что этот цвет хочет вам сказать?',
-            answer: '',
-          },
-          {
-            id: '3',
-            text: 'Какое настроение у этого цвета?',
-            answer: '',
-          },
-        ],
-        emotion: 'Печаль',
-        id: '89',
-      },
-    ],
-    today: structuredClone(initialDay),
-
+    historyList: list,
+    today: { ...initialDay },
     currentStep: 0,
     isNextStepAvailable: false,
     isPrevStepAvailable: false,
@@ -217,35 +65,28 @@ const useStore = create<IStore>()(
         ...obj,
       }));
     },
-
-    updateToday: (day: IDay) =>
+    updateToday: (day: IEmotion) =>
       set((state) => {
         if (!state.today.id) {
-          const date = new Date();
-          day.date = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
-          day.id = (Math.random() * 100).toFixed();
         }
         return { today: { ...state.today, ...day } };
       }),
-
-    // updateAnswer: (qId: string, answer: string) =>
-    //   set(({ today }) => {
-    //     today.description[qId] = answer;
-
-    //     return {
-    //       today: { ...today },
-    //     };
-    //   }),
-
     updateTodayDescription: (id: string, answer: string) => {
       return set((state) => {
-        const list = state.today.description.map((item) => {
-          if (item.id === id) {
-            item.answer = answer;
-          }
-          return item;
-        });
+        const descriptionItem = state.today.description.find((item) => item.id === id);
+        let list = [];
+        if (descriptionItem) {
+          list = state.today.description.map((item) => {
+            if (item.id === id) {
+              item.answer = answer;
+            }
+            return item;
+          });
+        } else {
+          const text = questionList.find((qItem) => qItem.id === id)!.text;
+          list = state.today.description.map((item) => ({ ...item }));
+          list.push({ id, text, answer });
+        }
         return {
           today: {
             ...state.today,
@@ -254,18 +95,24 @@ const useStore = create<IStore>()(
         };
       });
     },
-
-    addHistoryItem: (day: IDay) => {
+    addHistoryItem: (day: IEmotion) => {
       return set((state) => {
-        return { historyList: [...state.historyList, day] };
+        const date = new Date();
+        const dayDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        })}`;
+        const dayId = (Math.random() * 100).toFixed();
+        return { historyList: [...state.historyList, { ...day, id: dayId, date: dayDate }] };
       });
     },
-
     clearTodayAdd: () => {
       return set(() => {
         return {
           currentStep: 0,
-          today: structuredClone(initialDay),
+          today: { ...initialDay },
+          isNextStepAvailable: false,
+          isPrevStepAvailable: false,
         };
       });
     },

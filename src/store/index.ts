@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-interface IDay {
+interface IEmotion {
   date: string;
   color: string;
   description: Record<string, string>;
   emotion: string;
 }
 
-const initialDay: IDay = {
+const initialDay: IEmotion = {
   date: '',
   color: '',
   description: {},
@@ -16,10 +16,10 @@ const initialDay: IDay = {
 };
 
 interface IStore {
-  historyList: IDay[];
-  today: IDay;
+  historyList: IEmotion[];
+  today: IEmotion;
 
-  updateToday: (day: Partial<IDay>) => void;
+  updateToday: (day: Partial<IEmotion>) => void;
   updateAnswer: (qId: string, answer: string) => void;
 }
 
@@ -36,7 +36,7 @@ const useStore = create<IStore & IStoreUI>()(
     historyList: [],
     today: { ...initialDay },
 
-    updateToday: (day: IDay) =>
+    updateToday: (day: IEmotion) =>
       set((state) => {
         if (!state.today.date) {
           const date = new Date();

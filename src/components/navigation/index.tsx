@@ -6,6 +6,7 @@ import useStore from 'src/store/data';
 import IIcon from 'src/assets/icons/icon-i.svg?react';
 import IconPalette from 'src/assets/icons/icon-palette.svg?react';
 import IconPlus from 'src/assets/icons/icon-plus.svg?react';
+import steps from 'src/data/steps';
 import './styles.scss';
 
 const Navigation = () => {
@@ -25,12 +26,13 @@ const Navigation = () => {
   const onAdd = () => {
     addHistoryItem(today);
     clearTodayAdd();
+    navigate('/history');
   };
 
   const onIncrementCurrentStep = () => {
-    if (currentStep === today.description.length - 1) {
+    if (currentStep === steps.length - 1) {
       onAdd();
-      navigate('/history');
+
       return;
     }
     incrementCurrentStep();

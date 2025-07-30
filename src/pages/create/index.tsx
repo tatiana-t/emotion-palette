@@ -1,43 +1,16 @@
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
-
-import ColorPicker from 'src/pages/create/screen/colorPicker';
-import Questions from 'src/pages/create/screen/questions';
-import EmotionSelect from 'src/pages/create/screen/emotionSelect';
 import useStore from 'src/store/data';
-
+import stepsData from 'src/data/steps';
+import type { IStep } from './types';
 import './styles.scss';
 
-type IStepId = 'ColorPicker' | 'Questions' | 'Emotion';
-
-interface IStep {
-  stepId: IStepId;
-  isAnswered: boolean;
-  component: React.FC<{ onAnswer: (isAnswered: boolean) => void }>;
-}
-
 const PageCreate: React.FC = () => {
-  const today = useStore((state) => state.today);
+  const currentStep = useStore(({ currentStep }) => currentStep);
+  const today = useStore(({ today }) => today);
+  const updateNavigationAvailable = useStore((state) => state.updateNavigationAvailable);
 
-  const { currentStep, updateNavigationAvailable } = useStore((state) => state);
-
-  const [steps, setSteps] = useState<IStep[]>([
-    {
-      stepId: 'ColorPicker',
-      isAnswered: false,
-      component: ColorPicker,
-    },
-    {
-      stepId: 'Questions',
-      isAnswered: false,
-      component: Questions,
-    },
-    {
-      stepId: 'Emotion',
-      isAnswered: false,
-      component: EmotionSelect,
-    },
-  ]);
+  const [steps, setSteps] = useState<IStep[]>(stepsData);
 
   const updateStep = (isAnswered: boolean) => {
     setSteps(
@@ -62,20 +35,32 @@ const PageCreate: React.FC = () => {
   useEffect(() => {
     updateNavigationAvailable({
       isNextStepAvailable: steps[currentStep].isAnswered,
-      isPrevStepAvailable: currentStep > 0,
+      isPrevStepAvailable: currentStep > 0 && !!steps[currentStep],
     });
-  }, [currentStep, steps[currentStep].isAnswered]);
+  }, [steps[currentStep].isAnswered]);
 
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     // You can add a condition here to decide if you want to prompt the user
+  //     const shouldPrompt = steps.some(({ isAnswered }) => !isAnswered); // Replace with your actual condition
+
+  //     if (shouldPrompt) {
+  //       event.preventDefault(); // Standard for older browsers
+  //       event.returnValue = ''; // Standard for modern browsers
+  //       return ''; // Return an empty string for some browsers
+  //     }
+  //   };
+
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, []);
   const CurrentStepComponent = steps[currentStep].component;
 
-  const setIsAnswered = (stepId: string, isAnswered: boolean) => {
-    const updatedSteps = steps.map((item) => {
-      if (item.stepId === stepId) {
-        item.isAnswered = isAnswered;
-      }
-      return item;
-    });
-    setSteps(updatedSteps);
+  const setIsAnswered = (isAnswered: boolean) => {
+    updateStep(isAnswered);
   };
 
   return (
@@ -85,7 +70,7 @@ const PageCreate: React.FC = () => {
       })}
       style={{ backgroundColor: today.color }}
     >
-      <CurrentStepComponent onAnswer={(isAnswered: boolean) => setIsAnswered(steps[currentStep].stepId, isAnswered)} />
+      <CurrentStepComponent onAnswer={setIsAnswered} />
     </div>
   );
 };

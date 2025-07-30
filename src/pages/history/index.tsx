@@ -1,10 +1,10 @@
 import { Fragment, useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
 import useStore from 'src/store/data';
-import type { IDay } from 'src/store/data';
+import type { IEmotion } from 'src/types';
 import './styles.scss';
 
-type IRenderDay = IDay & { arrI: number; j: number };
+type IRenderDay = IEmotion & { arrI: number; j: number };
 
 const HistoryPage = () => {
   const historyList = useStore((state) => state.historyList);
