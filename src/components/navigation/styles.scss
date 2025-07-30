@@ -1,8 +1,4 @@
 .navigation {
-  position: fixed;
-  right: 200px;
-  top: 0;
-  color: #fff;
   &__main {
     padding: 90px 6px 30px;
     border-radius: 8px;
@@ -13,7 +9,9 @@
   }
   &__item {
     display: block;
+    margin: 0 auto;
     color: rgba(255, 255, 255, 0.7);
+
     margin-bottom: 20px;
     transition: filter, 0.2s;
     &:last-child {
@@ -25,7 +23,6 @@
     &_active {
       filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.8));
       color: #fff;
-      // box-shadow: 0 2px 10px #ffffff53;
     }
     &:visited {
       color: inherit;
@@ -38,6 +35,14 @@
       &_visible {
         opacity: 1;
       }
+    }
+  }
+}
+
+@media screen and (max-height: 640px) {
+  .navigation {
+    &__main {
+      padding: 30px 6px 10px;
     }
   }
 }

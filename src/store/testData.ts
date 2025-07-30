@@ -1,6 +1,6 @@
 const list = [
   {
-    date: '28.07.2025',
+    date: '28.07.2025 07.56',
     color: 'rgb(10, 100, 195)',
     description: [
       {
@@ -23,7 +23,7 @@ const list = [
     id: '77',
   },
   {
-    date: '28.07.2025',
+    date: '28.07.2025 09.17',
     color: 'rgb(103, 173, 247)',
     description: [
       {
@@ -46,7 +46,7 @@ const list = [
     id: '41',
   },
   {
-    date: '28.07.2025',
+    date: '28.07.2025 11.44',
     color: 'rgb(10, 195, 75)',
     description: [
       {
@@ -69,7 +69,7 @@ const list = [
     id: '54',
   },
   {
-    date: '28.07.2025',
+    date: '28.07.2025 12.32',
     color: 'rgb(201, 103, 247)',
     description: [
       {
@@ -92,7 +92,7 @@ const list = [
     id: '29',
   },
   {
-    date: '28.07.2025',
+    date: '30.07.2025 18:20',
     color: 'rgb(201, 103, 247)',
     description: [
       {
@@ -115,7 +115,7 @@ const list = [
     id: '79',
   },
   {
-    date: '28.07.2025',
+    date: '30.07.2025 18:21',
     color: 'rgb(201, 103, 247)',
     description: [
       {

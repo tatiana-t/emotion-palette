@@ -20,9 +20,9 @@ const Questions: React.FC<Props> = ({ onAnswer }) => {
   return (
     <div className="questions">
       <div className="questions__list">
-        <div className="questions__item questions__item_description">
+        {/* <div className="questions__item questions__item_description">
           <p>questions description</p>
-        </div>
+        </div> */}
         {questionsList.map((item) => {
           return (
             <div className="questions__item" key={item.id}>

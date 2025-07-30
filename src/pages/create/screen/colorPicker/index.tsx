@@ -68,11 +68,12 @@ interface Props {
 }
 
 const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
+  const selectedColor = useStore((state) => state.today.color);
   const updateToday = useStore((state) => state.updateToday);
-  const [selectedColor, setSelectedColor] = useState('');
+  // const [selectedColor, setSelectedColor] = useState('');
 
   const handleChangeColor = (color: string) => {
-    setSelectedColor(color);
+    // setSelectedColor(color);
     updateToday({ color });
     onAnswer(!!color);
   };

@@ -19,9 +19,12 @@ const HistoryPage = () => {
     const list = document.querySelector('.page-history__list');
     if (!list) return;
 
-    const itemWidth = list.clientWidth / 3;
-    itemsPerRow.current = itemWidth >= 300 ? 3 : 2;
+    const listWidth = list.clientWidth;
+    const itemWidth = list.querySelector('.page-history__item')?.clientWidth || 290;
+    itemsPerRow.current = Math.floor((listWidth - 40) / (itemWidth + 10));
+    console.log('itemWidth', listWidth, itemWidth, itemsPerRow.current);
   };
+
   const updateListToRender = () => {
     clearTimeout(timerId.current);
 
