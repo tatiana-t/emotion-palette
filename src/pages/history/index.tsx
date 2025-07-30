@@ -22,7 +22,6 @@ const HistoryPage = () => {
     const listWidth = list.clientWidth;
     const itemWidth = list.querySelector('.page-history__item')?.clientWidth || 290;
     itemsPerRow.current = Math.floor((listWidth - 40) / (itemWidth + 10));
-    console.log('itemWidth', listWidth, itemWidth, itemsPerRow.current);
   };
 
   const updateListToRender = () => {

@@ -27,7 +27,14 @@ const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
     <div className="emotion-select">
       <div className="emotion-select__field"></div>
       <div className="emotion-select__list"></div>
-      <Select value={getValue()} options={list} filterable placeholder="Выберите эмоцию" onUpdate={onUpdate} />
+      <Select
+        id="emotion"
+        value={getValue()}
+        options={list}
+        filterable
+        placeholder="Выберите эмоцию"
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };

@@ -17,3 +17,11 @@
     color: #fff;
   }
 }
+
+@media screen and (max-width: 420px) {
+  .app {
+    &__navigator {
+      right: 10px;
+    }
+  }
+}
