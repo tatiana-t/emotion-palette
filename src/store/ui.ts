@@ -1,41 +1,44 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-// interface IQuestion {
-//   id: string;
-//   text: string;
-//   answer: string;
-// }
 interface IStoreUI {
   currentStep: number;
-  incrementCurrentStep: () => void;
-}
+  isNextStepAvailable: boolean;
+  isPrevStepAvailable: boolean;
 
-// const questionsList: IQuestion[] = [
-//   {
-//     id: '1',
-//     text: 'Запишите свои ассоциации с выбранным цветом',
-//     answer: '',
-//   },
-//   {
-//     id: '2',
-//     text: 'Что этот цвет хочет вам сказать?',
-//     answer: '',
-//   },
-//   {
-//     id: '3',
-//     text: 'Какое настроение у этого цвета?',
-//     answer: '',
-//   },
-// ];
+  incrementCurrentStep: () => void;
+  decrementCurrentStep: () => void;
+
+  updateNavigationAvailable: (key: Record<'isNextStepAvailable' | 'isPrevStepAvailable', boolean>) => void;
+
+  clearAdding: () => void;
+}
 
 const useUIStore = create<IStoreUI>()(
   devtools((set) => ({
     currentStep: 0,
-    // questionsList,
-
+    isNextStepAvailable: false,
+    isPrevStepAvailable: false,
     incrementCurrentStep: () => {
       return set((state) => ({ currentStep: state.currentStep + 1 }));
+    },
+    decrementCurrentStep: () => {
+      return set((state) => ({ currentStep: state.currentStep - 1 }));
+    },
+    updateNavigationAvailable: (obj) => {
+      return set(() => ({
+        ...obj,
+      }));
+    },
+
+    clearAdding: () => {
+      return set(() => {
+        return {
+          currentStep: 0,
+          isNextStepAvailable: false,
+          isPrevStepAvailable: false,
+        };
+      });
     },
   })),
 );

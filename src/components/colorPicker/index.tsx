@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import classnames from 'classnames';
 import chroma from 'chroma-js';
-import useStore from 'src/store/data';
+import { useDataStore } from 'src/store';
 import './styles.scss';
 
 function hslToRgb(h: number, s: number, l: number) {
@@ -68,8 +68,8 @@ interface Props {
 }
 
 const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
-  const selectedColor = useStore((state) => state.today.color);
-  const updateToday = useStore((state) => state.updateToday);
+  const selectedColor = useDataStore((state) => state.today.color);
+  const updateToday = useDataStore((state) => state.updateToday);
   // const [selectedColor, setSelectedColor] = useState('');
 
   const handleChangeColor = (color: string) => {

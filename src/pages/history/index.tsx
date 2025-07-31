@@ -1,13 +1,14 @@
 import { Fragment, useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
-import useStore from 'src/store/data';
+import { useDataStore } from 'src/store';
 import type { IEmotion } from 'src/types';
 import './styles.scss';
 
 type IRenderDay = IEmotion & { arrI: number; j: number };
 
 const HistoryPage = () => {
-  const historyList = useStore((state) => state.historyList);
+  const historyList = useDataStore((state) => state.historyList);
+
   const [currentItem, setCurrentItem] = useState<IRenderDay | null>(null);
   const [listToRender, setListToRender] = useState<IRenderDay[][]>([]);
 

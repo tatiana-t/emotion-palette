@@ -3,23 +3,6 @@ import { devtools } from 'zustand/middleware';
 import list from './testData';
 import type { IEmotion } from 'src/types';
 import questionList from 'src/data/questions';
-// const questionsList: IQuestion[] = [
-//   {
-//     id: '1',
-//     text: 'Запишите свои ассоциации с выбранным цветом',
-//     answer: '',
-//   },
-//   {
-//     id: '2',
-//     text: 'Что этот цвет хочет вам сказать?',
-//     answer: '',
-//   },
-//   {
-//     id: '3',
-//     text: 'Какое настроение у этого цвета?',
-//     answer: '',
-//   },
-// ];
 
 const initialDay: IEmotion = {
   date: '',
@@ -28,17 +11,9 @@ const initialDay: IEmotion = {
   emotion: '',
 };
 
-interface IStore {
+interface IStoreData {
   historyList: IEmotion[];
   today: IEmotion;
-
-  currentStep: number;
-  isNextStepAvailable: boolean;
-  isPrevStepAvailable: boolean;
-
-  updateNavigationAvailable: (key: Record<'isNextStepAvailable' | 'isPrevStepAvailable', boolean>) => void;
-  incrementCurrentStep: () => void;
-  decrementCurrentStep: () => void;
 
   updateToday: (day: Partial<IEmotion>) => void;
   updateTodayDescription: (id: string, answer: string) => void;
@@ -47,24 +22,11 @@ interface IStore {
   clearTodayAdd: () => void;
 }
 
-const useStore = create<IStore>()(
+const useDataStore = create<IStoreData>()(
   devtools((set) => ({
     historyList: list,
     today: { ...initialDay },
-    currentStep: 0,
-    isNextStepAvailable: false,
-    isPrevStepAvailable: false,
-    incrementCurrentStep: () => {
-      return set((state) => ({ currentStep: state.currentStep + 1 }));
-    },
-    decrementCurrentStep: () => {
-      return set((state) => ({ currentStep: state.currentStep - 1 }));
-    },
-    updateNavigationAvailable: (obj) => {
-      return set(() => ({
-        ...obj,
-      }));
-    },
+
     updateToday: (day: IEmotion) =>
       set((state) => {
         if (!state.today.id) {
@@ -109,14 +71,11 @@ const useStore = create<IStore>()(
     clearTodayAdd: () => {
       return set(() => {
         return {
-          currentStep: 0,
           today: { ...initialDay },
-          isNextStepAvailable: false,
-          isPrevStepAvailable: false,
         };
       });
     },
   })),
 );
 
-export default useStore;
+export default useDataStore;

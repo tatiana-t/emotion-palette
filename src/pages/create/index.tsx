@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import useStore from 'src/store/data';
+import { useDataStore, useUIStore } from 'src/store';
 import stepsData from 'src/data/steps';
 import type { IStep } from './types';
 import './styles.scss';
 
 const PageCreate: React.FC = () => {
-  const currentStep = useStore(({ currentStep }) => currentStep);
-  const today = useStore(({ today }) => today);
-  const updateNavigationAvailable = useStore((state) => state.updateNavigationAvailable);
+  const today = useDataStore(({ today }) => today);
+  const currentStep = useUIStore((state) => state.currentStep);
+  const updateNavigationAvailable = useUIStore((state) => state.updateNavigationAvailable);
 
   const [steps, setSteps] = useState<IStep[]>(stepsData);
 

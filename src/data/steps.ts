@@ -1,6 +1,6 @@
-import ColorPicker from 'src/pages/create/screen/colorPicker';
-import Questions from 'src/pages/create/screen/questions';
-import EmotionSelect from 'src/pages/create/screen/emotionSelect';
+import ColorPicker from 'src/components/colorPicker';
+import Questions from 'src/components/questions';
+import EmotionSelect from 'src/components/emotionSelect';
 import type { IStep } from 'src/pages/create/types';
 
 const steps: IStep[] = [

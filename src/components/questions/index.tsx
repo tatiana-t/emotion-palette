@@ -1,6 +1,6 @@
 import { TextArea } from '@gravity-ui/uikit';
-import useStore from 'src/store/data';
-import questionsList from '../../../../data/questions';
+import { useDataStore } from 'src/store';
+import questionsList from 'src/data/questions';
 
 import './styles.scss';
 
@@ -9,8 +9,8 @@ interface Props {
 }
 
 const Questions: React.FC<Props> = ({ onAnswer }) => {
-  const today = useStore((state) => state.today);
-  const updateTodayDescription = useStore((state) => state.updateTodayDescription);
+  const today = useDataStore((state) => state.today);
+  const updateTodayDescription = useDataStore((state) => state.updateTodayDescription);
 
   const setAnswer = (id: string, answer: string) => {
     updateTodayDescription(id, answer);

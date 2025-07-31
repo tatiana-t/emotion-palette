@@ -1,5 +1,5 @@
 import { Select } from '@gravity-ui/uikit';
-import useStore from 'src/store/data';
+import { useDataStore } from 'src/store';
 import './styles.scss';
 
 interface Props {
@@ -12,8 +12,8 @@ const list = [
 ];
 
 const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
-  const updateToday = useStore((state) => state.updateToday);
-  const today = useStore((state) => state.today);
+  const updateToday = useDataStore((state) => state.updateToday);
+  const today = useDataStore((state) => state.today);
 
   const getValue = () => {
     const value = list.find((item) => item.content === today.emotion)?.value;
