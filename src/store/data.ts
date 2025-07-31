@@ -65,7 +65,7 @@ const useDataStore = create<IStoreData>()(
           minute: '2-digit',
         })}`;
         const dayId = (Math.random() * 100).toFixed();
-        return { historyList: [...state.historyList, { ...day, id: dayId, date: dayDate }] };
+        return { historyList: [{ ...day, id: dayId, date: dayDate }, ...state.historyList] };
       });
     },
     clearTodayAdd: () => {
