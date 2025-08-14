@@ -1,36 +1,34 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import list from './testData';
-import type { IEmotion } from 'src/types';
+import type { IColor } from 'src/types';
 import questionList from 'src/data/questions';
 
-const initialDay: IEmotion = {
-  date: '',
+const initialState: Pick<IColor, 'color' | 'description' | 'emotion'> = {
   color: '',
   description: [],
   emotion: '',
 };
 
 interface IStoreData {
-  historyList: IEmotion[];
-  today: IEmotion;
+  historyList: IColor[];
+  today: Pick<IColor, 'color' | 'description' | 'emotion'>;
 
-  updateToday: (day: Partial<IEmotion>) => void;
+  updateToday: (day: Partial<IColor>) => void;
   updateTodayDescription: (id: string, answer: string) => void;
 
-  addHistoryItem: (item: IEmotion) => void;
+  addHistoryItem: (item: IColor) => void;
   clearTodayAdd: () => void;
+
+  setHistory: (list: IColor[]) => void;
 }
 
 const useDataStore = create<IStoreData>()(
   devtools((set) => ({
-    historyList: list,
-    today: { ...initialDay },
+    historyList: [],
+    today: { ...initialState },
 
-    updateToday: (day: IEmotion) =>
+    updateToday: (day: IColor) =>
       set((state) => {
-        if (!state.today.id) {
-        }
         return { today: { ...state.today, ...day } };
       }),
     updateTodayDescription: (id: string, answer: string) => {
@@ -57,21 +55,23 @@ const useDataStore = create<IStoreData>()(
         };
       });
     },
-    addHistoryItem: (day: IEmotion) => {
+    addHistoryItem: (color: IColor) => {
       return set((state) => {
-        const date = new Date();
-        const dayDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-        })}`;
-        const dayId = (Math.random() * 100).toFixed();
-        return { historyList: [{ ...day, id: dayId, date: dayDate }, ...state.historyList] };
+        return { historyList: [color, ...state.historyList] };
       });
     },
     clearTodayAdd: () => {
       return set(() => {
         return {
-          today: { ...initialDay },
+          today: { ...initialState },
+        };
+      });
+    },
+
+    setHistory: (list: IColor[]) => {
+      return set(() => {
+        return {
+          historyList: list,
         };
       });
     },

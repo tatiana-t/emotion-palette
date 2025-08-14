@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { useDataStore, useUIStore } from 'src/store';
+import { useDataStore, useUIStore } from 'src/storage';
 import stepsData from 'src/data/steps';
 import type { IStep } from './types';
 import './styles.scss';

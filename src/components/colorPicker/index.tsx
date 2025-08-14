@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import classnames from 'classnames';
 import chroma from 'chroma-js';
-import { useDataStore } from 'src/store';
+import { useDataStore } from 'src/storage';
 import './styles.scss';
 
 function hslToRgb(h: number, s: number, l: number) {

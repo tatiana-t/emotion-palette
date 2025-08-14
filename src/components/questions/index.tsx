@@ -1,5 +1,5 @@
 import { TextArea } from '@gravity-ui/uikit';
-import { useDataStore } from 'src/store';
+import { useDataStore } from 'src/storage';
 import questionsList from 'src/data/questions';
 
 import './styles.scss';

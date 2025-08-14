@@ -20,7 +20,7 @@ const list = [
       },
     ],
     emotion: 'Радость',
-    id: '77',
+    colorId: '77',
   },
   {
     date: '28.07.2025 09.17',
@@ -43,7 +43,7 @@ const list = [
       },
     ],
     emotion: 'Радость',
-    id: '41',
+    colorId: '41',
   },
   {
     date: '28.07.2025 11.44',
@@ -66,7 +66,7 @@ const list = [
       },
     ],
     emotion: 'Радость',
-    id: '54',
+    colorId: '54',
   },
   {
     date: '28.07.2025 12.32',
@@ -89,7 +89,7 @@ const list = [
       },
     ],
     emotion: 'Печаль',
-    id: '29',
+    colorId: '29',
   },
   {
     date: '30.07.2025 18:20',
@@ -112,7 +112,7 @@ const list = [
       },
     ],
     emotion: 'Печаль',
-    id: '79',
+    colorId: '79',
   },
   {
     date: '30.07.2025 18:21',
@@ -135,7 +135,7 @@ const list = [
       },
     ],
     emotion: 'Печаль',
-    id: '89',
+    colorId: '89',
   },
 ];
 

@@ -1,5 +1,5 @@
 import { Select } from '@gravity-ui/uikit';
-import { useDataStore } from 'src/store';
+import { useDataStore } from 'src/storage';
 import './styles.scss';
 
 interface Props {

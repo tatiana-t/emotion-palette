@@ -2,7 +2,7 @@ import { NavLink, useNavigate, useLocation } from 'react-router';
 import classnames from 'classnames';
 import { CircleChevronLeft } from '@gravity-ui/icons';
 import { CircleChevronRight } from '@gravity-ui/icons';
-import { useDataStore, useUIStore } from 'src/store';
+import { useDataStore, useUIStore, saveColor } from 'src/storage';
 import IIcon from 'src/assets/icons/icon-i.svg?react';
 import IconPalette from 'src/assets/icons/icon-palette.svg?react';
 import IconPlus from 'src/assets/icons/icon-plus.svg?react';
@@ -13,7 +13,6 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const today = useDataStore((state) => state.today);
-  const addHistoryItem = useDataStore((state) => state.addHistoryItem);
   const clearTodayAdd = useDataStore((state) => state.clearTodayAdd);
 
   const {
@@ -26,7 +25,8 @@ const Navigation = () => {
   } = useUIStore((state) => state);
 
   const onAdd = () => {
-    addHistoryItem(today);
+    saveColor(today);
+
     clearTodayAdd();
     clearAdding();
     navigate('/history');

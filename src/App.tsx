@@ -5,6 +5,7 @@ import Navigation from 'src/components/navigation';
 import CreatePage from 'src/pages/create';
 import HistoryPage from 'src/pages/history';
 import About from 'src/pages/about';
+import { setHistoryFromDB } from 'src/storage';
 import './App.scss';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   };
   useEffect(() => {
     setHeight();
+    setHistoryFromDB();
     window.addEventListener('resize', setHeight);
 
     updateSection();

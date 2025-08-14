@@ -9,10 +9,20 @@ export interface IQAnswer {
   answer: string;
 }
 
-export interface IEmotion {
-  id?: string;
+export interface IColor {
+  colorId: string;
   date: string;
   color: string;
   description: IQAnswer[];
   emotion: string;
 }
+
+// export type IDraftColor = IColorData & {
+//   draftId: string;
+// };
+
+// export type ISavedColor = IColorData & {
+//   id: string;
+// };
+
+// export type IColor = IDraftColor | ISavedColor;
