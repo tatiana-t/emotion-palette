@@ -43,9 +43,10 @@ const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
         </div>
         <div className="emotion-select__list">
           {listToRender.map((group) => {
+            if (!group.items.length) return null;
+
             return (
               <div className="emotion-select__group" key={group.title}>
-                {/* <div className="emotion-select__title">{group.title}</div> */}
                 <div className="emotion-select__options">
                   {group.items.map((option) => {
                     return (
@@ -71,18 +72,6 @@ const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
           })}
         </div>
       </div>
-
-      {/* <div className="emotion-select__field">{today.emotion}</div> */}
-      {/* <Select
-        id="emotion"
-        // popupWidth={900}
-        // popupPlacement={['top-start']}
-        value={getValue()}
-        options={list}
-        filterable
-        placeholder="Выберите эмоцию"
-        onUpdate={onUpdate}
-      /> */}
     </div>
   );
 };
