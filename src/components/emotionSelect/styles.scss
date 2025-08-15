@@ -1,11 +1,63 @@
 .emotion-select {
-  // height: 100%;
+  width: 100%;
   padding-bottom: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .g-select-control__button::after {
+  &__menu {
+    width: 100%;
     background-color: #fff;
+    overflow-x: scroll;
+  }
+
+  &__filter {
+    padding: 8px 8px 0;
+    margin-bottom: 8px;
+    input {
+      width: 100%;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      font-family: inherit;
+    }
+  }
+
+  &__list {
+    height: 30vh;
+    // width: 100%;
+    padding: 8px;
+    display: flex;
+    gap: 60px;
+  }
+
+  &__field {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  &__title {
+    margin-bottom: 4px;
+  }
+  &__option {
+    input {
+      display: none;
+      & + label {
+        border: 3px solid transparent;
+        display: block;
+        padding: 1px 6px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover {
+          background-color: #f4f4f4;
+        }
+      }
+    }
+    &_active {
+      input + label:hover {
+        background-color: #fff;
+      }
+    }
   }
 }
