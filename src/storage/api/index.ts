@@ -52,7 +52,6 @@ const apiService = (): Promise<IApiService> =>
       database.onerror = (event: Event) => {
         console.error(`Database error: ${(event.target as IDBOpenDBRequest).error?.message}`);
       };
-      resolveWithMethods(database, resolve);
     };
 
     request.onsuccess = (e: Event) => {
