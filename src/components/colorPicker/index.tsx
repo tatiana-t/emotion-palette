@@ -46,8 +46,8 @@ const getColorsByCircle = () => {
   for (let hue = 1; hue < 310; hue += 35) {
     const shades = [];
 
-    for (let i = 1; i <= 3; i++) {
-      const step = i / 3;
+    for (let i = 1; i <= 5; i++) {
+      const step = i / 5;
       let saturation = 0.9;
       let lightness = 0.97 - step * 0.85; // от светлого к тёмному
 
@@ -96,11 +96,7 @@ const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
   return (
     <div className={classnames('color-picker')}>
       <div className="container">
-        {!selectedColor && (
-          <div className="color-picker__title">
-            Выберите цвет, который наиболее резонирует с вашим текущим состоянием
-          </div>
-        )}
+        <div className="color-picker__title">Выберите цвет, который наиболее резонирует с вашим текущим состоянием</div>
       </div>
       <div className="color-picker__list">
         {getColorsByCircle().map((colorGroup, i) => {

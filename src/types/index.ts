@@ -1,6 +1,7 @@
 export interface IQuestion {
   id: string;
   text: string;
+  type: 'text' | 'radio';
 }
 
 export interface IQAnswer {

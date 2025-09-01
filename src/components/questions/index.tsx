@@ -24,6 +24,24 @@ const Questions: React.FC<Props> = ({ onAnswer }) => {
           <p>questions description</p>
         </div> */}
         {questionsList.map((item) => {
+          if (item.type === 'radio') {
+            return (
+              <div className="questions__item" key={item.id}>
+                {item.text}
+                <div className="">
+                  <label htmlFor="yes">
+                    Соответствует
+                    <input id="yes" type="radio" name="currentOrCompensate" value="Yes" className="type" />
+                  </label>
+                  <br />
+                  <label htmlFor="no">
+                    Не соответствует текущему, но хочется
+                    <input id="no" type="radio" name="currentOrCompensate" value="No" className="type" />
+                  </label>
+                </div>
+              </div>
+            );
+          }
           return (
             <div className="questions__item" key={item.id}>
               <TextArea

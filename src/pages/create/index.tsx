@@ -66,9 +66,9 @@ const PageCreate: React.FC = () => {
   return (
     <div
       className={classnames('page-create', {
-        'page-create_shadow': !!today.color,
+        // 'page-create_shadow': !!today.color,
       })}
-      style={{ backgroundColor: today.color }}
+      // style={{ backgroundColor: today.color }}
     >
       <CurrentStepComponent onAnswer={setIsAnswered} />
     </div>
