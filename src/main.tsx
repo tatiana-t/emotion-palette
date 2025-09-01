@@ -16,7 +16,10 @@ const updateSW = registerSW({
     const answer = prompt('Need refresh');
     console.log('answer', answer);
     if (answer) {
+      console.log('updated');
       updateSW();
+    } else {
+      alert('not updated');
     }
   },
 });
