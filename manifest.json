@@ -1,0 +1,16 @@
+{
+  "name": "Палитра настроений",
+  "short_name": "Палитра",
+  "start_url": "/palette",
+  "display": "standalone",
+  "icons": [
+    { "purpose": "maskable", "sizes": "512x512", "src": "icon512_maskable.png", "type": "image/png" },
+    { "purpose": "any", "sizes": "512x512", "src": "icon512_rounded.png", "type": "image/png" }
+  ],
+
+  "theme_color": "#8936FF",
+  "background_color": "#2EC6FE",
+  "orientation": "portrait",
+  "lang": "ru-RU",
+  "scope": "/palette"
+}

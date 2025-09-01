@@ -16,8 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    "types": ["vite-plugin-svgr/client"],
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -25,11 +23,12 @@
     // "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedSideEffectImports": true,
+    "types": ["vite-plugin-svgr/client", "vite-plugin-pwa/client"],
 
     "baseUrl": "./",
     "paths": {
       "src/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "workers/sw.ts"]
 }
