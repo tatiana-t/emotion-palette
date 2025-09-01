@@ -9,16 +9,16 @@ import App from './App.tsx';
 import './styles/ui-theme.css';
 import './index.scss';
 
-registerSW({
+const updateSW = registerSW({
   immediate: true,
-  // onNeedRefresh() {
-  //   // show a prompt to user
-  //   const answer = prompt('Need refresh');
-  //   console.log('answer', answer);
-  //   if (answer) {
-  //     updateSW();
-  //   }
-  // },
+  onNeedRefresh() {
+    // show a prompt to user
+    const answer = prompt('Need refresh');
+    console.log('answer', answer);
+    if (answer) {
+      updateSW();
+    }
+  },
 });
 
 createRoot(document.getElementById('root')!).render(
