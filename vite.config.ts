@@ -25,8 +25,8 @@ export default defineConfig({
         display: 'standalone',
         icons: [{ purpose: 'any', sizes: 'any', src: 'assets/icons/icon-palette.svg', type: 'image/svg' }],
 
-        theme_color: '#8936FF',
-        background_color: '#2EC6FE',
+        // theme_color: '#8936FF',
+        // background_color: '#2EC6FE',
         orientation: 'portrait',
         lang: 'ru-RU',
         scope: 'https://hereandnowcreation.art/palette',
