@@ -9,7 +9,7 @@ import App from './App.tsx';
 import './styles/ui-theme.css';
 import './index.scss';
 
-const updateSW = registerSW({
+registerSW({
   immediate: true,
   // onNeedRefresh() {
   //   // show a prompt to user
