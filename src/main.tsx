@@ -13,7 +13,7 @@ const updateSW = registerSW({
   // immediate: true,
   onNeedRefresh() {
     // show a prompt to user
-    const answer = prompt('Need refresh');
+    const answer = confirm('Подтвердите обновление');
     console.log('answer', answer);
     if (answer) {
       console.log('updated');
