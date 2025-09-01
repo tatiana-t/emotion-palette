@@ -10,7 +10,7 @@ import './styles/ui-theme.css';
 import './index.scss';
 
 const updateSW = registerSW({
-  immediate: true,
+  // immediate: true,
   onNeedRefresh() {
     // show a prompt to user
     const answer = prompt('Need refresh');
@@ -18,6 +18,7 @@ const updateSW = registerSW({
     if (answer) {
       console.log('updated');
       updateSW();
+      alert('updated');
     } else {
       alert('not updated');
     }
