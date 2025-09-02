@@ -120,7 +120,7 @@ const HistoryPage = () => {
         {currentItem.description.map(({ id, text, answer }) => {
           return (
             <Fragment key={id}>
-              {!!answer ? (
+              {answer ? (
                 <div className="page-history__description-item" key={id}>
                   <div className="page-history__description-title">{text}</div>
                   <div className="page-history__description-text">{answer}</div>
