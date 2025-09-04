@@ -1,0 +1,14 @@
+.ui-button {
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  background-color: #fff;
+  white-space: nowrap;
+  transition: opacity, 0.2s;
+  &_disabled {
+    // opacity: 0.7;
+    cursor: not-alowed;
+  }
+}

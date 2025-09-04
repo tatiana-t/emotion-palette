@@ -1,0 +1,12 @@
+.screen-navigation {
+  &__inner {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+  &__item_next {
+    flex-grow: 1;
+    color: var(--color-selected-font, --color-font);
+    background-color: var(--color-selected, white);
+  }
+}

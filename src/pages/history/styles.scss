@@ -104,6 +104,12 @@
     &__row {
       justify-content: flex-start;
     }
+    &__item {
+      width: 100%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }
 

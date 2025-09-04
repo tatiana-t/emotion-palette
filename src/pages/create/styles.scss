@@ -1,15 +1,18 @@
 .page-create {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
+  padding: 20px 0 8px;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  // align-items: center;
+  // gap: 20px;
   transition: background-color, 0.3s;
-  &_shadow {
-    background-image:
-      radial-gradient(ellipse, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.15) 100%),
-      radial-gradient(ellipse, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.3) 90%);
-  }
+  // &_shadow {
+  //   background-image:
+  //     radial-gradient(ellipse, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.15) 100%),
+  //     radial-gradient(ellipse, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.3) 90%);
+  // }
+
   &__navigation {
     display: flex;
     gap: 16px;
@@ -66,3 +69,75 @@
 //     opacity: 1;
 //   }
 // }
+
+.create-screen {
+  padding: 20px 0 8px;
+  height: 100%;
+  display: grid;
+
+  grid-template-rows: max-content auto max-content;
+  grid-auto-flow: row;
+  gap: 20px;
+  transition: background-color, 0.2s;
+  &_shadow {
+    background-image:
+      radial-gradient(ellipse, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.15) 100%),
+      radial-gradient(ellipse, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.3) 90%);
+  }
+  &__title {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--color-font);
+    transition: color, 0.2s;
+    // font-weight: 600;
+    // text-align: center;
+  }
+  &__color {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  &__content {
+    // flex-grow: 1;
+    overflow-y: auto;
+    // position: relative;
+    // &::before {
+    //   content: '';
+    //   width: 100%;
+    //   height: 8px;
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   background-image: linear-gradient(to bottom, rgba(var(--color-background-rgb), 1) 0%, transparent 100%);
+    // }
+    // &::after {
+    //   content: '';
+    //   width: 100%;
+    //   height: 8px;
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    //   background-image: linear-gradient(to top, var(--color-background) 0%, transparent 100%);
+    // }
+  }
+  &__content-inner {
+    height: 100%;
+    max-height: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    & > div {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    // overflow-y: auto;
+  }
+  &__button {
+    width: 100%;
+    // position: sticky;
+    // bottom: 20px;
+  }
+}

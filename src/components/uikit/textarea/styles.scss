@@ -1,0 +1,14 @@
+.ui-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: var(--control-radius);
+  resize: vertical;
+  outline: 2px solid transparent;
+  transition: outline-color, 0.2s;
+  &:focus {
+    outline-color: var(--color-selected);
+  }
+}

@@ -2,6 +2,7 @@ import { Fragment, useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
 import { useDataStore, clearHistory } from 'src/storage';
 import type { IColor } from 'src/types';
+import questions from 'src/data/questions';
 import './styles.scss';
 
 type IRenderColor = IColor & { arrI: number; j: number };
@@ -117,15 +118,14 @@ const HistoryPage = () => {
           'page-history__description_right': itemsPerRow.current / (currentItem.j + 1) === 1,
         })}
       >
-        {currentItem.description.map(({ id, text, answer }) => {
+        {currentItem.reflection.map(({ id, value }) => {
+          const questionText: string = questions.find((item) => item.id === id)?.text || '';
           return (
             <Fragment key={id}>
-              {answer ? (
-                <div className="page-history__description-item" key={id}>
-                  <div className="page-history__description-title">{text}</div>
-                  <div className="page-history__description-text">{answer}</div>
-                </div>
-              ) : null}
+              <div className="page-history__description-item" key={id}>
+                <div className="page-history__description-title">{questionText}</div>
+                <div className="page-history__description-text">{value}</div>
+              </div>
             </Fragment>
           );
         })}
@@ -154,7 +154,7 @@ const HistoryPage = () => {
                       <div className="page-history__color" style={{ backgroundColor: item.color }} />
                       <div className="page-history__content">
                         <div className="page-history__title">{item.date}</div>
-                        <div className="page-history__text">{item.emotion}</div>
+                        <div className="page-history__text">{item.targetEmotion}</div>
                       </div>
                     </div>
                   );

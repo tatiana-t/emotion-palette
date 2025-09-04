@@ -1,23 +1,43 @@
-import ColorPicker from 'src/components/colorPicker';
-import Questions from 'src/components/questions';
-import EmotionSelect from 'src/components/emotionSelect';
-import type { IStep } from 'src/pages/create/types';
+import SCREEN_IDS from 'src/data/screenIds';
+import options from 'src/data/options';
+import questions from 'src/data/questions';
+import type { IScreen } from 'src/types';
 
-const steps: IStep[] = [
+const steps: IScreen[] = [
   {
-    stepId: 'ColorPicker',
-    isAnswered: false,
-    component: ColorPicker,
+    id: SCREEN_IDS.color,
+    type: 'ColorPicker',
+    title: 'Выберите цвет, который соответствует вашему настроению или просто нравится в данный момент',
   },
   {
-    stepId: 'Questions',
-    isAnswered: false,
-    component: Questions,
+    id: SCREEN_IDS.reflection,
+    type: 'multitext',
+    title: 'Запишите свои ощущения с выбранным цветом. Нужно ответить хотя бы на один вопрос.',
+    list: questions,
   },
   {
-    stepId: 'Emotion',
-    isAnswered: false,
-    component: EmotionSelect,
+    id: SCREEN_IDS.reflectionType,
+    type: 'select',
+    title: 'Как этот цвет соотносится с вашим состоянием',
+    options: options[SCREEN_IDS.reflectionType],
+  },
+  {
+    id: SCREEN_IDS.compensate,
+    type: 'text',
+    title: 'Чего не достает в текущем состоянии, чтобы оно стало желаемым?',
+    dependency: { id: SCREEN_IDS.reflectionType, value: 'no' },
+  },
+  {
+    id: SCREEN_IDS.like,
+    type: 'text',
+    title: 'Как ваше текущее состояние соотносится с описанным? В чем их отличия?',
+    dependency: { id: SCREEN_IDS.reflectionType, value: 'like' },
+  },
+  {
+    id: SCREEN_IDS.targetEmotion,
+    type: 'EmotionSelect',
+    title: 'Выберите эмоцию, наиболее точно описывающую ваше текущее состояние',
+    actionText: 'Добавить',
   },
 ];
 

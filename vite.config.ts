@@ -23,13 +23,13 @@ export default defineConfig({
         short_name: 'Палитра',
         start_url: '/palette',
         display: 'standalone',
-        icons: [{ purpose: 'any', sizes: 'any', src: 'logo.svg', type: 'image/svg' }],
+        icons: [{ sizes: '180x180', src: 'logo.svg' }],
 
         // theme_color: '#8936FF',
         // background_color: '#2EC6FE',
         orientation: 'portrait',
         lang: 'ru-RU',
-        scope: '/palette',
+        // scope: '/palette',
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],

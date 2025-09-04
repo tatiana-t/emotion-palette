@@ -1,29 +1,74 @@
+import options from 'src/data/options';
+import SCREEN_IDS from 'src/data/screenIds';
+
 export interface IQuestion {
   id: string;
   text: string;
-  type: 'text' | 'radio';
 }
 
 export interface IQAnswer {
   id: string;
-  text: string;
-  answer: string;
+  value: string;
 }
+
+// interface IAnswerMultiText {
+//   id: IScreenID;
+//   value: { id: string; text: string }[];
+// }
+
+// type IAnswer = IAnswerCommon | IAnswerMultiText;
 
 export interface IColor {
   colorId: string;
   date: string;
+
   color: string;
-  description: IQAnswer[];
-  emotion: string;
+  reflection: { id: string; value: string }[];
+  reflectionType: string;
+  targetEmotion: string;
+
+  compensate?: string;
+  like?: string;
 }
 
-// export type IDraftColor = IColorData & {
-//   draftId: string;
-// };
+type DependencyMap = {
+  //IScreenId: options values
+  [K in keyof typeof options]: (typeof options)[K][number]['id'];
+};
 
-// export type ISavedColor = IColorData & {
-//   id: string;
-// };
+export type IIds = (typeof SCREEN_IDS)[keyof typeof SCREEN_IDS];
+interface IScreenCommonFields {
+  id: IIds;
+  title: string;
+  actionText?: string;
+  dependency?: { id: typeof SCREEN_IDS.reflectionType; value: DependencyMap[typeof SCREEN_IDS.reflectionType] };
+}
 
-// export type IColor = IDraftColor | ISavedColor;
+export interface ITextScreen extends IScreenCommonFields {
+  type: 'text';
+}
+
+export interface IText {
+  id: string;
+  text: string;
+}
+export interface IMultiTextScreen extends IScreenCommonFields {
+  type: 'multitext';
+  list: IText[];
+}
+
+export interface IExternalComponentScreen extends IScreenCommonFields {
+  type: 'ColorPicker' | 'EmotionSelect';
+}
+
+export interface IOption {
+  id: string;
+  text: string;
+}
+
+export interface ISelectScreen extends IScreenCommonFields {
+  type: 'select';
+  options: IOption[];
+}
+
+export type IScreen = ISelectScreen | ITextScreen | IMultiTextScreen | IExternalComponentScreen;

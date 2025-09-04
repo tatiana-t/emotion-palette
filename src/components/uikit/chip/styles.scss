@@ -1,0 +1,19 @@
+.ui-chip {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: var(--control-radius);
+  border: 1px solid rgba(var(--color-border-rgb), 0.4);
+  background-color: white;
+  transition: background-color, 0.2s;
+  &:focus {
+    outline: 2px solid var(--color-selected);
+  }
+  &_active {
+    background-color: var(--color-selected, white);
+    border-color: var(--color-selected);
+    color: var(--color-font-variable);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+}

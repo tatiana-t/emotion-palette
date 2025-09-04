@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import Navigation from 'src/components/navigation';
+// import Navigation from 'src/components/navigation';
 import CreatePage from 'src/pages/create';
 import HistoryPage from 'src/pages/history';
 import About from 'src/pages/about';
@@ -31,7 +31,7 @@ function App() {
   }, [location]);
 
   const setHeight = () => {
-    let vh = window.innerHeight * 0.01;
+    const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
   useEffect(() => {
@@ -51,9 +51,9 @@ function App() {
 
   return (
     <div className="app theme_dark">
-      <div className="app__navigator">
+      {/* <div className="app__navigator">
         <Navigation />
-      </div>
+      </div> */}
       <Routes>
         <Route index element={<CreatePage />}></Route>
         <Route path="/history" element={<HistoryPage />}></Route>
