@@ -25,8 +25,8 @@ export default defineConfig({
         display: 'standalone',
         icons: [{ sizes: '180x180', src: 'logo.svg' }],
 
-        // theme_color: '#8936FF',
-        background_color: '#f5f5f5',
+        theme_color: '#f5f5f5',
+        // background_color: '#f5f5f5',
         orientation: 'portrait',
         lang: 'ru-RU',
         // scope: '/palette',
