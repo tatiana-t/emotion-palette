@@ -1,10 +1,10 @@
 .page-history {
   height: 100%;
   overflow-y: auto;
-  padding: 60px 0 40px;
+  padding-top: 40px;
   display: grid;
   grid-template-rows: max-content auto;
-  gap: 60px;
+  gap: 6px;
   &__title {
     font-size: 28px;
     font-weight: 500;
@@ -20,6 +20,7 @@
     // width: 1040px;
     max-width: 100%;
     margin: 0 auto;
+    padding-top: 40px;
     // padding: 30vh 20px;
     overflow: auto;
 

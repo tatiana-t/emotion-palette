@@ -1,0 +1,7 @@
+.ui-link {
+  &.active {
+    svg circle {
+      opacity: 0.3;
+    }
+  }
+}

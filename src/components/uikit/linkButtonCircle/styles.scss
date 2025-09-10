@@ -1,0 +1,4 @@
+.ui-link-button-circle {
+  display: inline-block;
+  @include circle-button();
+}

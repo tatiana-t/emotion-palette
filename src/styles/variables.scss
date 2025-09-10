@@ -14,6 +14,10 @@
   --control-radius: 8px;
 
   // --color-selected: none;
+  --color-font: #213547;
+  --color-font-rgb: 33, 53, 71;
+  --color-icon: #8f8e8e;
+  --color-icon-rgb: 143, 142, 142;
   --color-font-variable: white;
 
   &.theme_dark {
@@ -22,7 +26,7 @@
     --glass-background: rgba(0, 0, 0, 0.1);
 
     // --color-border: #213547;
-    --color-font: #213547;
+    // --color-font: #213547;
     // --glass-color: #444;
 
     --color-font-variable: #4d5257;

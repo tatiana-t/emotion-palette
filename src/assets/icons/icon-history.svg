@@ -1,8 +1,9 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
-    d="M16 21V11M16 21H18M16 21H14M16 11H14M16 11H18"
+    d="M12 11H21M12 16.5H21M12 22H17"
     stroke="currentColor"
     stroke-width="3"
+    stroke-miterlimit="79.8403"
     stroke-linecap="round"
     stroke-linejoin="round"
   />

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
-import { useDataStore, clearHistory } from 'src/storage';
+import Link from 'src/components/uikit/link';
+import { useDataStore } from 'src/storage';
 import type { IColor } from 'src/types';
 import questions from 'src/data/questions';
 import './styles.scss';
@@ -102,9 +103,9 @@ const HistoryPage = () => {
     wrapper.style.height = `${contentHeight}px`;
   };
 
-  const onClearHistory = () => {
-    clearHistory();
-  };
+  // const onClearHistory = () => {
+  //   clearHistory();
+  // };
 
   const renderDescription = () => {
     if (!currentItem) {
@@ -151,32 +152,35 @@ const HistoryPage = () => {
               <div className="page-history__row">
                 {arr.map((item) => {
                   return (
-                    <div
+                    <Link
                       key={item.colorId}
+                      url={`/history/${item.colorId}`}
                       className={classnames('page-history__item', {
                         // 'page-history__item_active': currentItem?.colorId === item.colorId,
                       })}
                       onClick={() => updateCurrentItem(item)}
                     >
-                      <div className="page-history__color" style={{ backgroundColor: item.color }} />
-                      <div className="page-history__content">
-                        <div className="page-history__item-title">{item.targetEmotion}</div>
-                        <div className="page-history__text">{item.date}</div>
-                      </div>
-                      <svg
-                        className="page-history__open-button"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M6.85925 3.93096C6.41463 3.23227 6.62083 2.3046 7.31921 1.85967C8.01806 1.41495 8.94569 1.62088 9.3905 2.31963L13.7655 9.19463C14.0781 9.68597 14.0782 10.3146 13.7655 10.806L9.3905 17.681C8.94557 18.3793 8.0179 18.5855 7.31921 18.1409C6.62069 17.6962 6.41494 16.7684 6.85925 16.0696L10.7216 10.0003L6.85925 3.93096Z"
-                          fill="#8F8E8E"
-                        />
-                      </svg>
-                    </div>
+                      <>
+                        <div className="page-history__color" style={{ backgroundColor: item.color }} />
+                        <div className="page-history__content">
+                          <div className="page-history__item-title">{item.targetEmotion}</div>
+                          <div className="page-history__text">{item.date}</div>
+                        </div>
+                        <svg
+                          className="page-history__open-button"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M6.85925 3.93096C6.41463 3.23227 6.62083 2.3046 7.31921 1.85967C8.01806 1.41495 8.94569 1.62088 9.3905 2.31963L13.7655 9.19463C14.0781 9.68597 14.0782 10.3146 13.7655 10.806L9.3905 17.681C8.94557 18.3793 8.0179 18.5855 7.31921 18.1409C6.62069 17.6962 6.41494 16.7684 6.85925 16.0696L10.7216 10.0003L6.85925 3.93096Z"
+                            fill="#8F8E8E"
+                          />
+                        </svg>
+                      </>
+                    </Link>
                   );
                 })}
               </div>

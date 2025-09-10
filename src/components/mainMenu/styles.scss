@@ -1,0 +1,29 @@
+.main-menu {
+  padding: 12px 28px 24px;
+  background-color: #fff;
+  // background-image: url('src/assets/menu-bg.svg');
+  // background-position: center 0;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  color: var(--color-icon);
+  line-height: 0;
+  // box-shadow: 0 0 10px rgba(var(--color-font-rgb), 0.2);
+  // filter: drop-shadow(0 0 7px rgba(var(--color-icon-rgb), 0.2));
+  border-top: 1px solid var(--color-border);
+  &__list {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+  // &__item_add {
+  // position: relative;
+  // top: -10px;
+  // a {
+  //   box-shadow: 0 0 10px rgba(var(--color-font-rgb), 0.2);
+  // }
+  // }
+  a {
+    display: inline-flex;
+  }
+}
