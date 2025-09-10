@@ -1,8 +1,6 @@
 import { useLocation } from 'react-router';
 import Link from 'src/components/uikit/link';
-import LinkButtonCircle from 'src/components/uikit/linkButtonCircle';
 import Icon from 'src/components/uikit/icon';
-// import ButtonCircle from 'src/components/uikit/buttonCircle';
 import './styles.scss';
 
 const MainMenu = () => {

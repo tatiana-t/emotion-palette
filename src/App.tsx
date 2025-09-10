@@ -5,15 +5,15 @@ import { useLocation } from 'react-router-dom';
 import MainMenu from 'src/components/mainMenu';
 import CreatePage from 'src/pages/create';
 import HistoryPage from 'src/pages/history';
-import DetailPage from 'src/pages/history';
-import About from 'src/pages/about';
+import DetailPage from 'src/pages/detail';
+import AboutPage from 'src/pages/about';
 import { setHistoryFromDB } from 'src/storage';
 import './App.scss';
 
 function App() {
-  const [currentSection, setCurrentSection] = useState('/');
+  // const [currentSection, setCurrentSection] = useState('/');
 
-  const location = useLocation();
+  // const location = useLocation();
 
   // useEffect(() => {
   //   if (currentSection === '/') {
@@ -23,34 +23,30 @@ function App() {
   //   }
   // }, [currentSection]);
 
-  const updateSection = () => {
-    if (location.pathname !== currentSection) {
-      setCurrentSection(location.pathname);
-    }
-  };
-  useEffect(() => {
-    updateSection();
-  }, [location]);
-
-  const setHeight = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
-
-  useEffect(() => {
-    setHeight();
-    setHistoryFromDB();
-    window.addEventListener('resize', setHeight);
-
-    updateSection();
-    return () => {
-      window.removeEventListener('resize', setHeight);
-    };
-  }, []);
-
-  // const onUpdate = (value: string) => {
-  //   setCurrentSection(value);
+  // const updateSection = () => {
+  //   if (location.pathname !== currentSection) {
+  //     setCurrentSection(location.pathname);
+  //   }
   // };
+  // useEffect(() => {
+  //   updateSection();
+  // }, [location]);
+
+  // const setHeight = () => {
+  //   const vh = window.innerHeight * 0.01;
+  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // };
+
+  useEffect(() => {
+    // setHeight();
+    setHistoryFromDB();
+    // window.addEventListener('resize', setHeight);
+
+    // updateSection();
+    // return () => {
+    //   window.removeEventListener('resize', setHeight);
+    // };
+  }, []);
 
   return (
     <div className="app theme_dark">
@@ -58,8 +54,8 @@ function App() {
         <Routes>
           <Route index element={<CreatePage />}></Route>
           <Route path="/history" element={<HistoryPage />}></Route>
-          <Route path="/history:id" element={<DetailPage />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/history/:id" element={<DetailPage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
         </Routes>
       </div>
 

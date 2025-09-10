@@ -1,4 +1,4 @@
-const About = () => {
+const AboutPage = () => {
   return (
     <div className="about">
       <div className="about__title">Палитра настроения</div>
@@ -41,4 +41,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;
