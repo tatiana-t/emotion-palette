@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router';
-import { useLocation } from 'react-router-dom';
-// import Navigation from 'src/components/navigation';
 import MainMenu from 'src/components/mainMenu';
 import CreatePage from 'src/pages/create';
 import HistoryPage from 'src/pages/history';
@@ -11,41 +9,8 @@ import { setHistoryFromDB } from 'src/storage';
 import './App.scss';
 
 function App() {
-  // const [currentSection, setCurrentSection] = useState('/');
-
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   if (currentSection === '/') {
-  //     navigate('/');
-  //   } else {
-  //     navigate('/history');
-  //   }
-  // }, [currentSection]);
-
-  // const updateSection = () => {
-  //   if (location.pathname !== currentSection) {
-  //     setCurrentSection(location.pathname);
-  //   }
-  // };
-  // useEffect(() => {
-  //   updateSection();
-  // }, [location]);
-
-  // const setHeight = () => {
-  //   const vh = window.innerHeight * 0.01;
-  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
-  // };
-
   useEffect(() => {
-    // setHeight();
     setHistoryFromDB();
-    // window.addEventListener('resize', setHeight);
-
-    // updateSection();
-    // return () => {
-    //   window.removeEventListener('resize', setHeight);
-    // };
   }, []);
 
   return (
