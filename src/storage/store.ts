@@ -8,6 +8,7 @@ type IInitialState = Pick<IColor, 'color' | 'reflection' | 'reflectionType' | 't
 interface IStoreData {
   historyList: IColor[];
   today: IInitialState;
+  currentColor: IColor | null;
 
   updateToday: (day: Partial<IColor>) => void;
 
@@ -17,6 +18,7 @@ interface IStoreData {
   clearTodayAdd: () => void;
 
   setHistory: (list: IColor[]) => void;
+  setCurrentColor: (color: IColor | null) => void;
 }
 
 const initialState: IInitialState = {
@@ -32,6 +34,7 @@ const useDataStore = create<IStoreData>()(
   devtools((set) => ({
     historyList: [],
     today: { ...initialState },
+    currentColor: null,
 
     updateToday: (day) =>
       set((state) => {
@@ -51,6 +54,7 @@ const useDataStore = create<IStoreData>()(
         return { historyList: [color, ...state.historyList] };
       });
     },
+
     clearTodayAdd: () => {
       return set(() => {
         return {
@@ -59,11 +63,17 @@ const useDataStore = create<IStoreData>()(
       });
     },
 
-    setHistory: (list: IColor[]) => {
+    setHistory: (list) => {
       return set(() => {
         return {
           historyList: list,
         };
+      });
+    },
+
+    setCurrentColor: (currentColor) => {
+      return set(() => {
+        return { currentColor };
       });
     },
   })),

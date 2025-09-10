@@ -8,7 +8,7 @@ export default {
       text: 'Соответсвует',
     },
     {
-      id: 'no',
+      id: 'compensate',
       text: 'Отражает скорее желаемое состояние',
     },
     {

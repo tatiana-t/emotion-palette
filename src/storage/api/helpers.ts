@@ -1,4 +1,4 @@
-export const createTransaction = (dbInstance: IDBDatabase, type: 'readwrite' | 'readonly', storeName: string) => {
+export const getTransactionStore = (dbInstance: IDBDatabase, type: 'readwrite' | 'readonly', storeName: string) => {
   const transaction = dbInstance.transaction(storeName, type);
 
   //   transaction.oncomplete = () => {

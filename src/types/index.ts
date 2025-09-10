@@ -24,7 +24,7 @@ export interface IColor {
 
   color: string;
   reflection: { id: string; value: string }[];
-  reflectionType: string;
+  reflectionType: 'compensate' | 'like';
   targetEmotion: string;
 
   compensate?: string;

@@ -25,7 +25,7 @@ const steps: IScreen[] = [
     id: SCREEN_IDS.compensate,
     type: 'text',
     title: 'Чего не достает в текущем состоянии, чтобы оно стало желаемым?',
-    dependency: { id: SCREEN_IDS.reflectionType, value: 'no' },
+    dependency: { id: SCREEN_IDS.reflectionType, value: 'compensate' },
   },
   {
     id: SCREEN_IDS.like,

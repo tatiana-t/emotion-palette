@@ -1,12 +1,14 @@
-import { createTransaction, handleRequest } from './helpers';
+import { getTransactionStore, handleRequest } from './helpers';
 import type { IColor } from 'src/types';
 
 type ISaveItem = (item: IColor, storeName?: string) => Promise<number>;
+type IGetItem = (itemId: string, storeName?: string) => Promise<IColor>;
 type IGetAllHistory = (storeName?: string) => Promise<IColor[]>;
 type IClearHistory = (storeName?: string) => void;
 
 interface IApiService {
   saveItem: ISaveItem;
+  getItem: IGetItem;
   getAllHistory: IGetAllHistory;
   clearHistory: IClearHistory;
 }
@@ -14,26 +16,35 @@ interface IApiService {
 const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiService: IApiService) => void) => {
   const saveItem: ISaveItem = (item: IColor, storeName = 'paletteStore') =>
     new Promise((resolve, reject) => {
-      const store = createTransaction(dbInstance, 'readwrite', storeName);
+      const store = getTransactionStore(dbInstance, 'readwrite', storeName);
       handleRequest(() => store.add(item), resolve, reject);
     });
 
   const getAllHistory: IGetAllHistory = (storeName = 'paletteStore'): Promise<IColor[]> => {
     return new Promise((resolve, reject) => {
-      const store = createTransaction(dbInstance, 'readonly', storeName);
+      const store = getTransactionStore(dbInstance, 'readonly', storeName);
       handleRequest<IColor[]>(() => store.getAll(), resolve, reject);
     });
   };
 
   const clearHistory: IClearHistory = (storeName = 'paletteStore') => {
     return new Promise((resolve, reject) => {
-      const store = createTransaction(dbInstance, 'readwrite', storeName);
+      const store = getTransactionStore(dbInstance, 'readwrite', storeName);
       handleRequest<never>(() => store.clear(), resolve, reject);
+    });
+  };
+
+  const getItem: IGetItem = (colorId: string, storeName = 'paletteStore'): Promise<IColor> => {
+    return new Promise((resolve, reject) => {
+      const store = getTransactionStore(dbInstance, 'readonly', storeName);
+      const colorIdIndex = store.index('colorId');
+      handleRequest<IColor>(() => colorIdIndex.get(colorId), resolve, reject);
     });
   };
 
   resolveCallback({
     saveItem,
+    getItem,
     getAllHistory,
     clearHistory,
   });
@@ -47,7 +58,9 @@ const apiService = (): Promise<IApiService> =>
       console.log('onupgradeneeded');
 
       const database = (e.target as IDBOpenDBRequest).result;
-      database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
+
+      const store = database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
+      store.createIndex('colorId', 'colorId', { unique: true });
 
       database.onerror = (event: Event) => {
         console.error(`Database error: ${(event.target as IDBOpenDBRequest).error?.message}`);
@@ -56,6 +69,7 @@ const apiService = (): Promise<IApiService> =>
 
     request.onsuccess = (e: Event) => {
       const database = (e.target as IDBOpenDBRequest).result;
+
       resolveWithMethods(database, resolve);
     };
 
@@ -64,5 +78,5 @@ const apiService = (): Promise<IApiService> =>
     };
   });
 
-const { saveItem, getAllHistory, clearHistory } = await apiService();
-export default { saveItem, getAllHistory, clearHistory };
+const { saveItem, getItem, getAllHistory, clearHistory } = await apiService();
+export default { saveItem, getItem, getAllHistory, clearHistory };

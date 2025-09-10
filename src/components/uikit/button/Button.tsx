@@ -11,6 +11,13 @@ interface Props {
 }
 
 const Button = ({ text, onClick, className, disabled, children }: Props) => {
+  if (children) {
+    return (
+      <button onClick={onClick} className={className}>
+        {children}
+      </button>
+    );
+  }
   return (
     <button
       className={classnames('ui-button', className, {

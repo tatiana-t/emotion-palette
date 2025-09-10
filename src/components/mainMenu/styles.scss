@@ -10,6 +10,7 @@
   // box-shadow: 0 0 10px rgba(var(--color-font-rgb), 0.2);
   // filter: drop-shadow(0 0 7px rgba(var(--color-icon-rgb), 0.2));
   border-top: 1px solid var(--color-border);
+  transition: background-color, 0.2s;
   &__list {
     display: flex;
 
@@ -25,5 +26,9 @@
   // }
   a {
     display: inline-flex;
+  }
+  &_colored {
+    color: var(--color-font-variable);
+    // background-color: var(--color-selected);
   }
 }
