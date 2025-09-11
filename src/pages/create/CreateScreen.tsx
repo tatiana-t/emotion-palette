@@ -1,54 +1,20 @@
-import { useState } from 'react';
-import classnames from 'classnames';
+import { useSearchParams } from 'react-router';
 import ColorPicker from 'src/components/colorPicker';
 import EmotionSelect from 'src/components/emotionSelect';
 import Multitext from 'src/components/multitext';
-import Selection from 'src/components/selection';
-import ScreenNavigation from './components/ScreenNavigation';
-import { useUIStore } from 'src/storage';
-import stepsData from 'src/data/steps';
-// import type { IStep } from './types';
-import type { IScreen } from 'src/types';
-import './styles.scss';
 import SingleText from 'src/components/singleText';
+import Selection from 'src/components/selection';
+import CreateScreenNavigation from './components/CreateScreenNavigation';
+import steps from 'src/data/steps';
+import SCREEN_IDS from 'src/data/screenIds';
+import type { IScreen, IIds } from 'src/types';
+import './styles.scss';
 
 const CreateScreen: React.FC = () => {
-  // const today = useDataStore(({ today }) => today);
-  const currentStepIdx = useUIStore((state) => state.currentStepIdx);
-  // const updateNavigationAvailable = useUIStore((state) => state.updateNavigationAvailable);
+  const [searchParams] = useSearchParams();
+  const currentSscreenId = searchParams.get('id') as IIds;
 
-  // const values = useDataStore((state) => state.today[id]) as { id: string; value: string }[];
-  // const updateField = useDataStore((state) => state.updateField);
-
-  const [steps, setSteps] = useState<IScreen[]>(stepsData);
-  const currentScreen: IScreen = steps[currentStepIdx];
-
-  const updateStep = (isAnswered: boolean) => {
-    setSteps(
-      steps.map((step: IScreen, i) => {
-        if (i === currentStepIdx) {
-          return {
-            ...step,
-            isAnswered,
-          };
-        }
-        return step;
-      }),
-    );
-  };
-
-  // useEffect(() => {
-  //   if (today.color) {
-  //     updateStep(true);
-  //   }
-  // }, [today.color]);
-
-  // useEffect(() => {
-  //   updateNavigationAvailable({
-  //     isNextStepAvailable: !!today[currentScreen.id],
-  //     isPrevStepAvailable: currentStepIdx > 0 && !!steps[currentStepIdx],
-  //   });
-  // }, [steps[currentStepIdx].isAnswered]);
+  const currentScreen: IScreen = steps[currentSscreenId || SCREEN_IDS.color];
 
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
@@ -69,10 +35,6 @@ const CreateScreen: React.FC = () => {
   //   };
   // }, []);
 
-  const setIsAnswered = (isAnswered: boolean) => {
-    updateStep(isAnswered);
-  };
-
   const renderQuestion = () => {
     switch (currentScreen.type) {
       case 'text':
@@ -82,35 +44,22 @@ const CreateScreen: React.FC = () => {
       case 'select':
         return <Selection id={currentScreen.id} options={currentScreen.options} />;
       case 'ColorPicker':
-        return <ColorPicker onAnswer={setIsAnswered} />;
+        return <ColorPicker />;
       case 'EmotionSelect':
-        return <EmotionSelect onAnswer={setIsAnswered} />;
+        return <EmotionSelect />;
       default:
         return null;
     }
   };
 
   return (
-    <div
-      className={classnames(
-        'create-screen',
-        // { 'create-screen_shadow': today.color }
-      )}
-      // style={{ borderLeft: `5px solid ${today.color}`, borderTop: `5px solid ${today.color}` }}
-    >
+    <div className="create-screen">
       <div className="create-screen__title container">{currentScreen.title}</div>
-      {/* <CurrentStepComponent onAnswer={setIsAnswered} /> */}
-      {/* <div className="create-screen__color" style={{ backgroundColor: today.color }}></div> */}
       <div className="create-screen__content container">
         <div className="create-screen__content-inner">{renderQuestion()}</div>
       </div>
       <div className="container ">
-        <ScreenNavigation currentScreen={currentScreen} buttonText={currentScreen.actionText || 'Дальше'} />
-        {/* <Button
-          text={currentScreen.actionText || 'Дальше'}
-          onClick={() => updateStep(true)}
-          className="create-screen__button"
-        /> */}
+        <CreateScreenNavigation currentScreen={currentScreen} buttonText={currentScreen.actionText || 'Дальше'} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import { useNavigate, useLocation } from 'react-router';
+import { useEffect } from 'react';
+import { useNavigate, useLocation, useSearchParams } from 'react-router';
 import classnames from 'classnames';
 import Button from 'src/components/uikit/button';
 import { useDataStore, useUIStore, saveColor } from 'src/storage';
@@ -16,28 +17,25 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
   const today = useDataStore((state) => state.today);
   const clearTodayAdd = useDataStore((state) => state.clearTodayAdd);
 
-  const {
-    // incrementCurrentStep,
-    // decrementCurrentStep,
-    setStepIdx,
-    isNextStepAvailable,
-    // isPrevStepAvailable,
-    currentStepIdx,
-    clearAdding,
-  } = useUIStore((state) => state);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // useEffect(() => {
-  //   if (!currentScreen.dependency) return;
-  //   console.log('currentScreen', currentScreen, today[currentScreen.dependency.id]);
-  //   if (today[currentScreen.dependency.id] === currentScreen.dependency.value) return;
-  //   incrementCurrentStep();
-  // }, [currentStepIdx]);
+  const { isNextStepAvailable, clearAdding } = useUIStore((state) => state);
+
+  useEffect(() => {
+    return () => {
+      clearTodayAdd();
+      clearAdding();
+    };
+  }, [clearTodayAdd, clearAdding]);
+
+  useEffect(() => {
+    if (!today.color) {
+      setSearchParams({ id: steps.color.id });
+    }
+  }, [searchParams, today.color, setSearchParams]);
 
   const onAdd = () => {
     saveColor(today);
-
-    clearTodayAdd();
-    clearAdding();
     navigate('/history', { viewTransition: true });
   };
 
@@ -60,27 +58,34 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
   //   return currentStepIdx - 1;
   // };
 
-  const getNextScreenIdx = () => {
-    for (let i = currentStepIdx + 1; i < steps.length; i++) {
-      const screen = steps[i];
-      if (!screen.dependency) return i;
+  const getNextScreenId = () => {
+    const stepsArr = Object.values(steps);
+    const currentScreenIdx = stepsArr.findIndex((item) => item.id === searchParams.get('id'));
+    for (let i = currentScreenIdx + 1; i < stepsArr.length; i++) {
+      const screen = stepsArr[i];
+      // if (!screen.dependency) return stepsArr[i].id;
 
-      if (today[screen.dependency.id] === screen.dependency.value) {
-        return i;
+      if (!screen.dependency || today[screen.dependency.id] === screen.dependency.value) {
+        return stepsArr[i].id;
       }
     }
-    return currentStepIdx + 1;
+    return stepsArr[currentScreenIdx + 1].id;
   };
 
   const onIncrementCurrentStep = () => {
     if (!isValue()) return;
-    if (currentStepIdx === steps.length - 1) {
+    const stepsArr = Object.values(steps);
+    const currentScreenIdx = stepsArr.findIndex((item) => item.id === searchParams.get('id'));
+    if (currentScreenIdx === Object.values(steps).length - 1) {
       onAdd();
       return;
     }
 
-    const nextScreenIdx = getNextScreenIdx();
-    setStepIdx(nextScreenIdx);
+    const nextScreenId = getNextScreenId();
+    setSearchParams({ id: `${nextScreenId}` });
+    // navigate({
+    //   search: `?id=${nextScreenId}`,
+    // });
   };
 
   // const onSetPrevScreen = () => {

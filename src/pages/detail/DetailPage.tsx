@@ -36,7 +36,14 @@ const DetailPage = () => {
 
   if (!color) return null;
 
-  const descriptionTitle: string = steps.find((item) => item.id === color.reflectionType)?.title || '';
+  const getDescriptionTitle = (): string => {
+    if (!color.reflectionType) return '';
+    if (color.reflectionType !== 'yes') {
+      return steps[color.reflectionType]?.title;
+    }
+
+    return '';
+  };
 
   return (
     <div className="detail-page">
@@ -57,7 +64,7 @@ const DetailPage = () => {
         })}
         {color.reflectionType && color[color.reflectionType] !== 'yes' && (
           <div className="detail-page__description-item">
-            <div className="detail-page__description-title">{descriptionTitle}</div>
+            <div className="detail-page__description-title">{getDescriptionTitle()}</div>
             <div className="detail-page__description-text">{color[color.reflectionType]}</div>
           </div>
         )}

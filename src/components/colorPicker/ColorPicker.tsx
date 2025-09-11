@@ -4,11 +4,7 @@ import colors from './colors';
 
 import './styles.scss';
 
-interface Props {
-  onAnswer: (isAnswered: boolean) => void;
-}
-
-const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
+const ColorPicker: React.FC = () => {
   const selectedColor = useDataStore((state) => state.today.color);
   const updateToday = useDataStore((state) => state.updateToday);
   // const [selectedColor, setSelectedColor] = useState('');
@@ -16,7 +12,7 @@ const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
   const handleChangeColor = (color: string) => {
     // setSelectedColor(color);
     updateToday({ color });
-    onAnswer(!!color);
+    // onAnswer(!!color);
   };
 
   // useEffect(() => {

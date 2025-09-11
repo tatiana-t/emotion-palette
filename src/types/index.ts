@@ -11,13 +11,6 @@ export interface IQAnswer {
   value: string;
 }
 
-// interface IAnswerMultiText {
-//   id: IScreenID;
-//   value: { id: string; text: string }[];
-// }
-
-// type IAnswer = IAnswerCommon | IAnswerMultiText;
-
 type IDependencyMap = {
   //IScreenId: options values
   [K in keyof typeof options]: (typeof options)[K][number]['id'];

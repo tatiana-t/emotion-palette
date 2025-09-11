@@ -4,11 +4,7 @@ import { useDataStore } from 'src/storage';
 import list from 'src/data/emotions';
 import './styles.scss';
 
-interface Props {
-  onAnswer: (isAnswered: boolean) => void;
-}
-
-const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
+const EmotionSelect: React.FC = () => {
   const updateField = useDataStore((state) => state.updateField);
   const today = useDataStore((state) => state.today);
   const [filterValue, setFilterValue] = useState('');
@@ -27,7 +23,6 @@ const EmotionSelect: React.FC<Props> = ({ onAnswer }) => {
   }, [filterValue]);
 
   const onChange = (value: string) => {
-    onAnswer(!!value);
     updateField('targetEmotion', value);
   };
 
