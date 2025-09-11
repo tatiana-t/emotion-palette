@@ -5,13 +5,23 @@ import CreatePage from 'src/pages/create';
 import HistoryPage from 'src/pages/history';
 import DetailPage from 'src/pages/detail';
 import AboutPage from 'src/pages/about';
+import { useDataStore } from 'src/storage';
 import { setHistoryFromDB } from 'src/storage';
+import { setColorsCssVars } from 'src/helpers/setColorsCssVars';
 import './App.scss';
 
 function App() {
+  const selectedColor = useDataStore((state) => state.today.color);
+  const colorItem = useDataStore((state) => state.currentColor);
+
   useEffect(() => {
     setHistoryFromDB();
   }, []);
+
+  useEffect(() => {
+    const color = selectedColor || colorItem?.color;
+    setColorsCssVars(color);
+  }, [selectedColor, colorItem]);
 
   return (
     <div className="app theme_dark">

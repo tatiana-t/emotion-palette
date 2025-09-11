@@ -32,21 +32,15 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
   //   if (today[currentScreen.dependency.id] === currentScreen.dependency.value) return;
   //   incrementCurrentStep();
   // }, [currentStepIdx]);
-  const clearCssVars = () => {
-    const appEl: HTMLElement | null = document.querySelector('.app');
-    if (!appEl) return;
 
-    appEl.style.setProperty('--color-selected', 'initial');
-    appEl.style.setProperty('--color-selected-font', 'initial');
-  };
   const onAdd = () => {
     saveColor(today);
 
     clearTodayAdd();
     clearAdding();
-    clearCssVars();
     navigate('/history');
   };
+
   const isValue = () => {
     const value = today[currentScreen.id];
     if (currentScreen.type === 'multitext' && typeof value === 'object') {

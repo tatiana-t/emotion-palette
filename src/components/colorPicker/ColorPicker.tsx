@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import classnames from 'classnames';
-import chroma from 'chroma-js';
 import { useDataStore } from 'src/storage';
 import colors from './colors';
+
 import './styles.scss';
 
 interface Props {
@@ -20,25 +19,9 @@ const ColorPicker: React.FC<Props> = ({ onAnswer }) => {
     onAnswer(!!color);
   };
 
-  useEffect(() => {
-    if (!selectedColor) return;
-    const appEl: HTMLElement | null = document.querySelector('.app');
-    if (!appEl) return;
-
-    const isDarkColor = chroma(selectedColor).luminance() < 0.7;
-    const fontColor = isDarkColor
-      ? chroma(selectedColor).brighten(3).saturate(1).hex()
-      : chroma(selectedColor).darken(2.6).saturate(2).hex();
-
-    if (!isDarkColor) {
-      document.querySelector('.app')?.classList.add('theme_dark');
-    } else {
-      document.querySelector('.app')?.classList.remove('theme_dark');
-    }
-
-    appEl.style.setProperty('--color-selected', selectedColor);
-    appEl.style.setProperty('--color-selected-font', fontColor);
-  }, [selectedColor]);
+  // useEffect(() => {
+  //   setColorsCssVars(selectedColor);
+  // }, [selectedColor]);
 
   return (
     <div className={classnames('color-picker')}>
