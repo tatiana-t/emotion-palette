@@ -41,7 +41,7 @@ const Multitext = ({ id, list }: Props) => {
       {list.map((item) => {
         return (
           <div key={item.id} className="multi-text__item">
-            <Label forId={item.id} text={item.text} />
+            <Label forId={item.id} text={item.text} className="multi-text__label" />
             <Textarea
               name={id}
               id={item.id}

@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const color = selectedColor || colorItem?.color;
     setColorsCssVars(color);
-  }, [selectedColor, colorItem]);
+  }, [selectedColor, colorItem?.color]);
 
   return (
     <div className="app theme_dark">
