@@ -8,9 +8,9 @@ import './styles.scss';
 const MainMenu = () => {
   const location = useLocation();
 
-  if (location.pathname === '/') {
-    return null;
-  }
+  // if (location.pathname === '/') {
+  //   return null;
+  // }
 
   return (
     <div

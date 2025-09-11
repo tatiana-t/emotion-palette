@@ -13,12 +13,12 @@ interface Props {
 const Link = ({ url, text, className, children }: Props) => {
   if (children)
     return (
-      <NavLink to={url} className={classnames('ui-link', className)}>
+      <NavLink to={url} className={classnames('ui-link', className)} viewTransition>
         {children}
       </NavLink>
     );
   return (
-    <NavLink to={url} className={classnames('ui-link', className)}>
+    <NavLink to={url} className={classnames('ui-link', className)} viewTransition>
       {text}
     </NavLink>
   );

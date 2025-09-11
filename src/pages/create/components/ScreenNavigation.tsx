@@ -38,7 +38,7 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
 
     clearTodayAdd();
     clearAdding();
-    navigate('/history');
+    navigate('/history', { viewTransition: true });
   };
 
   const isValue = () => {

@@ -1,7 +1,6 @@
 import type { IIds } from 'src/types';
 import Textarea from 'src/components/uikit/textarea';
 import { useDataStore } from 'src/storage';
-// import './styles.scss';
 
 interface Props {
   id: IIds;
@@ -9,7 +8,6 @@ interface Props {
 const SingleText = ({ id }: Props) => {
   const today = useDataStore((state) => state.today[id]);
   const updateField = useDataStore((state) => state.updateField);
-  console.log('SingleText id', id, today);
 
   return (
     <div className="single-text">
