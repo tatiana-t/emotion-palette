@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
-// import classnames from 'classnames';
 import Button from 'src/components/uikit/button';
 import Icon from 'src/components/uikit/icon';
 import api from 'src/storage/api/index';
 import useDataStore from 'src/storage/store';
 import questions from 'src/data/questions';
 import steps from 'src/data/steps';
-import type { IColor } from 'src/types';
 import './styles.scss';
 
 const DetailPage = () => {
-  // const [color, setColor] = useState<IColor | null>(null);
   const color = useDataStore((state) => state.currentColor);
   const setCurrentColor = useDataStore((state) => state.setCurrentColor);
   const navigate = useNavigate();
@@ -37,11 +34,10 @@ const DetailPage = () => {
     return () => {
       setCurrentColor(null);
     };
-  }, []);
+  }, [color]);
 
   if (!color) return null;
 
-  // const optionalDescription: string | undefined = color.compensate || color.like;
   const descriptionTitle: string = steps.find((item) => item.id === color.reflectionType)?.title || '';
 
   return (
@@ -67,7 +63,7 @@ const DetailPage = () => {
             </div>
           );
         })}
-        {color[color.reflectionType] !== 'yes' && (
+        {color.reflectionType && color[color.reflectionType] !== 'yes' && (
           <div className="detail-page__description-item">
             <div className="detail-page__description-title">{descriptionTitle}</div>
             <div className="detail-page__description-text">{color[color.reflectionType]}</div>

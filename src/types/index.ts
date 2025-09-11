@@ -18,22 +18,22 @@ export interface IQAnswer {
 
 // type IAnswer = IAnswerCommon | IAnswerMultiText;
 
-export interface IColor {
+type IDependencyMap = {
+  //IScreenId: options values
+  [K in keyof typeof options]: (typeof options)[K][number]['id'];
+};
+
+export type IColor = {
   colorId: string;
   date: string;
-
   color: string;
   reflection: { id: string; value: string }[];
-  reflectionType: 'compensate' | 'like';
+  reflectionType: IDependencyMap[typeof SCREEN_IDS.reflectionType] | ''; //IDependencyMap[typeof SCREEN_IDS.reflectionType][number]['id'];
   targetEmotion: string;
 
   compensate?: string;
   like?: string;
-}
-
-type DependencyMap = {
-  //IScreenId: options values
-  [K in keyof typeof options]: (typeof options)[K][number]['id'];
+  yes?: string;
 };
 
 export type IIds = (typeof SCREEN_IDS)[keyof typeof SCREEN_IDS];
@@ -41,7 +41,7 @@ interface IScreenCommonFields {
   id: IIds;
   title: string;
   actionText?: string;
-  dependency?: { id: typeof SCREEN_IDS.reflectionType; value: DependencyMap[typeof SCREEN_IDS.reflectionType] };
+  dependency?: { id: typeof SCREEN_IDS.reflectionType; value: IDependencyMap[typeof SCREEN_IDS.reflectionType] };
 }
 
 export interface ITextScreen extends IScreenCommonFields {
