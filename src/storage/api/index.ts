@@ -52,15 +52,21 @@ const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiServic
 
 const apiService = (): Promise<IApiService> =>
   new Promise((resolve) => {
-    const request = window.indexedDB.open('PaletteDB', 1);
+    const request = window.indexedDB.open('PaletteDB', 2);
 
     request.onupgradeneeded = (e: IDBVersionChangeEvent) => {
       console.log('onupgradeneeded');
+      const target = e.target as IDBOpenDBRequest;
+      const database = target.result;
 
-      const database = (e.target as IDBOpenDBRequest).result;
+      if (e.oldVersion === 0) {
+        database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
+      }
 
-      const store = database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
-      store.createIndex('colorId', 'colorId', { unique: true });
+      if (e.oldVersion === 1 && target.transaction) {
+        const store = target.transaction.objectStore('paletteStore');
+        store.createIndex('colorId', 'colorId', { unique: true });
+      }
 
       database.onerror = (event: Event) => {
         console.error(`Database error: ${(event.target as IDBOpenDBRequest).error?.message}`);
