@@ -13,50 +13,28 @@
   }
   &__list {
     max-width: 100%;
-    // display: flex;
-    flex-direction: column;
-    align-items: center;
-    // overflow-y: auto;
   }
   &__item {
     flex-grow: 1;
     display: flex;
-    gap: 30px;
-    margin-bottom: 30px;
+    justify-content: space-evenly;
+    gap: 10px;
+
+    padding: 0 10px;
+    width: 100%;
+    margin-bottom: 10px;
     &:last-child {
       margin-bottom: 0;
     }
   }
   &__label {
     display: block;
-    // min-width: 150px;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 3px solid transparent;
-    // transition: transform, 0.2s;
-    &_active {
-      // border-color: var(--color-border);
-      // transform: scale(1.5);
-    }
   }
   &__input {
     display: none;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .color-picker {
-    &__item {
-      padding: 0 10px;
-      width: 100%;
-      justify-content: space-evenly;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    &__label {
-      width: 50px;
-      height: 50px;
-    }
   }
 }

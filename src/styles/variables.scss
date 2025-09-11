@@ -1,19 +1,23 @@
+:root {
+  --color-background: #f5f5f5;
+  --color-background-rgb: 245, 245, 245;
+
+  --color-border: #dcdcdc;
+  --color-border-rgb: 220, 220, 220;
+}
+
 .app {
   --glass-border-color: rgba(214, 214, 214, 0.6);
   --glass-gradient: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.15));
   --glass-background: rgba(255, 255, 255, 0.2);
   --glass-color: white;
 
-  --vh: 1vh;
-  --color-background: #f5f5f5;
-  --color-background-rgb: 245, 245, 245;
-
   // --color-border: white;
   // --color-font: white;
 
   --control-radius: 8px;
 
-  // --color-selected: none;
+  --color-selected: unset;
   --color-font: #444444;
   --color-font-rgb: 33, 53, 71;
   --color-icon: #8f8e8e;
@@ -31,9 +35,4 @@
 
     --color-font-variable: #4d5257;
   }
-}
-
-:root {
-  --color-border: #dcdcdc;
-  --color-border-rgb: 220, 220, 220;
 }

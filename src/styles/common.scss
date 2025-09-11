@@ -46,7 +46,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-
+  background-color: var(--color-background);
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
   }

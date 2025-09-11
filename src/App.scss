@@ -1,16 +1,13 @@
 .app {
   width: 100%;
+  max-width: 480px;
   height: 100dvh;
   display: grid;
   grid-template-rows: auto max-content;
   transition: background-color, 0.4s;
   position: relative;
+  margin: 0 auto;
 
-  color: #444444;
-  background-color: var(--color-background);
-  // background-image: radial-gradient(#e7e6e6 0, transparent 2px);
-  // background-size: 16px 16px;
-  // background-repeat: repeat;
   &__content {
     overflow: auto;
   }
