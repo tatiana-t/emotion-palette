@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router';
-import classnames from 'classnames';
 import Button from 'src/components/uikit/button';
-import { useDataStore, useUIStore, saveColor } from 'src/storage';
+import { useDataStore, saveColor } from 'src/storage';
 import type { IScreen } from 'src/types';
 import steps from 'src/data/steps';
 import './styles.scss';
@@ -19,14 +18,11 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { isNextStepAvailable, clearAdding } = useUIStore((state) => state);
-
   useEffect(() => {
     return () => {
       clearTodayAdd();
-      clearAdding();
     };
-  }, [clearTodayAdd, clearAdding]);
+  }, [clearTodayAdd]);
 
   useEffect(() => {
     if (!today.color) {
@@ -111,9 +107,7 @@ const ScreenNavigation = ({ currentScreen, buttonText }: Props) => {
             <CircleChevronLeft width={24} height={24} />
           </Button> */}
           <Button
-            className={classnames('screen-navigation__item screen-navigation__item_next', {
-              navigation__item_visible: isNextStepAvailable,
-            })}
+            className="screen-navigation__item screen-navigation__item_next"
             disabled={!isValue()}
             onClick={onIncrementCurrentStep}
             text={buttonText}

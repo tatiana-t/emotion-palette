@@ -9,20 +9,20 @@ import App from './App.tsx';
 import './styles/ui-theme.css';
 import './index.scss';
 
-const updateSW = registerSW({
-  // immediate: true,
-  onNeedRefresh() {
-    // show a prompt to user
-    const answer = confirm('Подтвердите обновление');
-    console.log('answer', answer);
-    if (answer) {
-      console.log('updated');
-      updateSW();
-      alert('updated');
-    } else {
-      alert('not updated');
-    }
-  },
+registerSW({
+  immediate: true,
+  // onNeedRefresh() {
+  //   // show a prompt to user
+  //   const answer = confirm('Подтвердите обновление');
+  //   console.log('answer', answer);
+  //   if (answer) {
+  //     console.log('updated');
+  //     updateSW();
+  //     alert('updated');
+  //   } else {
+  //     alert('not updated');
+  //   }
+  // },
 });
 
 createRoot(document.getElementById('root')!).render(
