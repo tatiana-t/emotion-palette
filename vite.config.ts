@@ -22,14 +22,31 @@ export default defineConfig({
         name: 'Палитра настроений',
         short_name: 'Палитра',
         start_url: '/palette',
+        scope: '/palette',
         display: 'standalone',
-        icons: [{ sizes: '180x180', src: 'logo.svg' }],
-
+        icons: [
+          { src: 'icon.svg', sizes: 'any', purpose: 'any maskable' },
+          { src: 'icon.png', sizes: 'any', purpose: 'maskable' },
+        ],
+        screenshots: [
+          {
+            src: 'screenshot.png',
+            sizes: '916x1626',
+            type: 'image/png',
+            label: 'Экран выбора цвета',
+          },
+          {
+            src: 'screenshot-desktop.png',
+            sizes: '2270x1632',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'Экран выбора цвета',
+          },
+        ],
         theme_color: '#f5f5f5',
-        // background_color: '#f5f5f5',
+        background_color: '#f5f5f5',
         orientation: 'portrait',
         lang: 'ru-RU',
-        // scope: '/palette',
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
