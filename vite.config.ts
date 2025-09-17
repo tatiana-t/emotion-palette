@@ -25,8 +25,8 @@ export default defineConfig({
         scope: '/palette',
         display: 'standalone',
         icons: [
-          { src: 'icon.svg', sizes: 'any', purpose: 'any maskable' },
-          { src: 'icon.png', sizes: 'any', purpose: 'maskable' },
+          { src: 'icon.png', sizes: 'any', purpose: 'any maskable' },
+          { src: 'icon-512.png', sizes: '512x512' },
         ],
         screenshots: [
           {
