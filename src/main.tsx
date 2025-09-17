@@ -6,6 +6,9 @@ import { registerSW } from 'virtual:pwa-register';
 import App from './App.tsx';
 // import '@gravity-ui/uikit/styles/fonts.css';
 // import '@gravity-ui/uikit/styles/styles.css';
+import LogRocket from 'logrocket';
+LogRocket.init('0493q8/emotion-palette');
+
 import './styles/ui-theme.css';
 import './index.scss';
 
