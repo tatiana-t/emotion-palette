@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
-import LogRocket from 'logrocket';
 import { ThemeProvider } from '@gravity-ui/uikit';
 import { registerSW } from 'virtual:pwa-register';
 import App from './App.tsx';
@@ -10,10 +9,6 @@ import App from './App.tsx';
 
 import './styles/ui-theme.css';
 import './index.scss';
-
-if (import.meta.env.PROD) {
-  LogRocket.init('0493q8/emotion-palette');
-}
 
 registerSW({
   immediate: true,
