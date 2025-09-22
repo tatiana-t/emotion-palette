@@ -23,10 +23,12 @@ const DetailPage = () => {
       .then((data) => {
         if (data) {
           setCurrentColor(data);
+          alert(JSON.stringify(data));
         }
       })
       .catch((e) => {
         console.error('Error occured while getting color: ', e);
+        alert(JSON.stringify(e));
       });
 
     return () => {
