@@ -17,8 +17,7 @@ const DetailPage = () => {
   useEffect(() => {
     const pathArr = location.pathname.split('/');
     const colorId = pathArr[pathArr.length - 1];
-    alert(location);
-    alert(pathArr);
+    alert(colorId);
     api
       .getItem(colorId)
       .then((data) => {

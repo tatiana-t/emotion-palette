@@ -59,11 +59,12 @@ const apiService = (): Promise<IApiService> =>
       const target = e.target as IDBOpenDBRequest;
       const database = target.result;
 
-      if (e.oldVersion === 0) {
-        database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
-      }
+      // if (e.oldVersion === 0) {
+      database.createObjectStore('paletteStore', { keyPath: 'id', autoIncrement: true });
+      // }
 
-      if (e.oldVersion === 1 && target.transaction) {
+      if (target.transaction) {
+        //e.oldVersion === 1 &&
         const store = target.transaction.objectStore('paletteStore');
         store.createIndex('colorId', 'colorId', { unique: true });
       }
