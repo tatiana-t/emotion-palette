@@ -17,18 +17,19 @@ const DetailPage = () => {
   useEffect(() => {
     const pathArr = location.pathname.split('/');
     const colorId = pathArr[pathArr.length - 1];
-
+    alert(location);
+    alert(pathArr);
     api
       .getItem(colorId)
       .then((data) => {
         if (data) {
           setCurrentColor(data);
-          alert(JSON.stringify(data));
+          // alert(JSON.stringify(data));
         }
       })
       .catch((e) => {
         console.error('Error occured while getting color: ', e);
-        alert(JSON.stringify(e));
+        // alert(JSON.stringify(e));
       });
 
     return () => {
