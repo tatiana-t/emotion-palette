@@ -9,6 +9,7 @@ interface IStoreData {
   historyList: IColor[];
   today: IInitialState;
   currentColor: IColor | null;
+  count: number;
 
   updateToday: (day: Partial<IColor>) => void;
 
@@ -19,6 +20,7 @@ interface IStoreData {
 
   setHistory: (list: IColor[]) => void;
   setCurrentColor: (color: IColor | null) => void;
+  setCount: (count: number) => void;
 }
 
 const initialState: IInitialState = {
@@ -35,6 +37,7 @@ const useDataStore = create<IStoreData>()(
     historyList: [],
     today: { ...initialState },
     currentColor: null,
+    count: 0,
 
     updateToday: (day) =>
       set((state) => {
@@ -74,6 +77,12 @@ const useDataStore = create<IStoreData>()(
     setCurrentColor: (currentColor) => {
       return set(() => {
         return { currentColor };
+      });
+    },
+
+    setCount: (count) => {
+      return set(() => {
+        return { count };
       });
     },
   })),

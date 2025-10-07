@@ -41,6 +41,11 @@ export const setHistoryFromDB = async (from: number, to: number) => {
   useDataStore.getState().setHistory(list);
 };
 
+export const setTotalCount = async () => {
+  const count: number = await api.getTotalCount();
+  useDataStore.getState().setCount(count);
+};
+
 export const clearHistory = async () => {
   await api.clearHistory();
   useDataStore.getState().setHistory([]);

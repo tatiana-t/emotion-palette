@@ -5,12 +5,14 @@ type ISaveItem = (item: IColor, storeName?: string) => Promise<number>;
 type IGetItem = (itemId: string, storeName?: string) => Promise<IColor>;
 type IGetList = (from: number, to: number, storeName?: string) => Promise<IColor[]>;
 type IClearHistory = (storeName?: string) => void;
+type ICount = (storeName?: string) => Promise<number>;
 
 interface IApiService {
   saveItem: ISaveItem;
   getItem: IGetItem;
   getList: IGetList;
   clearHistory: IClearHistory;
+  getTotalCount: ICount;
 }
 
 const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiService: IApiService) => void) => {
@@ -60,11 +62,19 @@ const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiServic
     });
   };
 
+  const getTotalCount: ICount = (storeName = 'paletteStore'): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const store = getTransactionStore(dbInstance, 'readonly', storeName);
+      handleRequest<number>(() => store.count(), resolve, reject);
+    });
+  };
+
   resolveCallback({
     saveItem,
     getItem,
     getList,
     clearHistory,
+    getTotalCount,
   });
 };
 
@@ -105,5 +115,5 @@ const apiService = (): Promise<IApiService> =>
     };
   });
 
-const { saveItem, getItem, getList, clearHistory } = await apiService();
-export default { saveItem, getItem, getList, clearHistory };
+const { saveItem, getItem, getList, clearHistory, getTotalCount } = await apiService();
+export default { saveItem, getItem, getList, clearHistory, getTotalCount };
