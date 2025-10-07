@@ -35,10 +35,10 @@ export const saveColor = async (userColor: Omit<IColor, 'colorId' | 'date'>) => 
   await saveToDB(color);
 };
 
-export const setHistoryFromDB = async () => {
-  const history: IColor[] = await api.getAllHistory();
-
-  useDataStore.getState().setHistory(history);
+export const setHistoryFromDB = async (from: number, to: number) => {
+  const list: IColor[] = await api.getList(from, to);
+  console.log('list', list);
+  useDataStore.getState().setHistory(list);
 };
 
 export const clearHistory = async () => {

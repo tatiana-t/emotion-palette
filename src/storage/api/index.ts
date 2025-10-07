@@ -3,13 +3,13 @@ import type { IColor } from 'src/types';
 
 type ISaveItem = (item: IColor, storeName?: string) => Promise<number>;
 type IGetItem = (itemId: string, storeName?: string) => Promise<IColor>;
-type IGetAllHistory = (storeName?: string) => Promise<IColor[]>;
+type IGetList = (from: number, to: number, storeName?: string) => Promise<IColor[]>;
 type IClearHistory = (storeName?: string) => void;
 
 interface IApiService {
   saveItem: ISaveItem;
   getItem: IGetItem;
-  getAllHistory: IGetAllHistory;
+  getList: IGetList;
   clearHistory: IClearHistory;
 }
 
@@ -20,10 +20,28 @@ const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiServic
       handleRequest(() => store.add(item), resolve, reject);
     });
 
-  const getAllHistory: IGetAllHistory = (storeName = 'paletteStore'): Promise<IColor[]> => {
+  const getList: IGetList = (from, to, storeName = 'paletteStore'): Promise<IColor[]> => {
     return new Promise((resolve, reject) => {
       const store = getTransactionStore(dbInstance, 'readonly', storeName);
-      handleRequest<IColor[]>(() => store.getAll(), resolve, reject);
+      const list: IColor[] = [];
+      // handleRequest<IColor[]>(() => store.openCursor(IDBKeyRange.bound(0, 20), 'prev'), resolve, reject);
+      const request: IDBRequest<IDBCursorWithValue | null> = store.openCursor(IDBKeyRange.bound(from, to), 'prev');
+
+      request.onsuccess = () => {
+        if (request.result?.value) {
+          list.push(request.result?.value);
+        }
+
+        if (request.result) {
+          request.result?.continue();
+        } else {
+          resolve(list);
+        }
+      };
+
+      request.onerror = (e) => {
+        reject(e);
+      };
     });
   };
 
@@ -45,7 +63,7 @@ const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiServic
   resolveCallback({
     saveItem,
     getItem,
-    getAllHistory,
+    getList,
     clearHistory,
   });
 };
@@ -87,5 +105,5 @@ const apiService = (): Promise<IApiService> =>
     };
   });
 
-const { saveItem, getItem, getAllHistory, clearHistory } = await apiService();
-export default { saveItem, getItem, getAllHistory, clearHistory };
+const { saveItem, getItem, getList, clearHistory } = await apiService();
+export default { saveItem, getItem, getList, clearHistory };
