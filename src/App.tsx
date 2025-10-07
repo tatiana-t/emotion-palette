@@ -15,7 +15,7 @@ function App() {
   const colorItem = useDataStore((state) => state.currentColor);
 
   useEffect(() => {
-    setHistoryFromDB();
+    setHistoryFromDB(0, 50);
   }, []);
 
   useEffect(() => {
