@@ -35,10 +35,20 @@ export const saveColor = async (userColor: Omit<IColor, 'colorId' | 'date'>) => 
   await saveToDB(color);
 };
 
-export const setHistoryFromDB = async (from: number, to: number) => {
+const getOffsetItems = async ({ limit, offset }: { limit: number; offset: number }) => {
+  const count = useDataStore.getState().count;
+  const to: number = count - offset;
+  const from: number = to - limit >= 0 ? to - limit : 0;
   const list: IColor[] = await api.getList(from, to);
-  console.log('list', list);
-  useDataStore.getState().setHistory(list);
+  return list;
+};
+
+export const setHistoryFromDB = async ({ limit, offset }: { limit: number; offset: number }) => {
+  const list: IColor[] = await getOffsetItems({ limit, offset }); //await api.getList(from, to);
+  const historyList = useDataStore.getState().historyList;
+  const listToSet = [...historyList, ...list];
+  useDataStore.getState().setHistory(listToSet);
+  return listToSet;
 };
 
 export const setTotalCount = async () => {

@@ -1,10 +1,16 @@
 .main-menu {
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
+  // width: 100%;
+
   padding: 12px 28px 24px;
   line-height: 0;
   // border-top: 1px solid var(--color-border);
 
   color: var(--color-icon);
-  background-color: #fff;
+  background-color: #ffffff90;
+  // backdrop-filter: blur(6px);
   transition: background-color, 0.2s;
   &__list {
     display: flex;

@@ -15,6 +15,11 @@ const DetailPage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    console.log('color', color);
+    console.log('location.pathname', location.pathname);
+  });
+
+  useEffect(() => {
     const pathArr = location.pathname.split('/');
     const colorId = pathArr[pathArr.length - 1];
 
@@ -47,7 +52,10 @@ const DetailPage = () => {
 
   return (
     <div className="detail-page">
-      <Button className="detail-page__back" onClick={() => navigate(-1)}>
+      <Button
+        className="detail-page__back"
+        onClick={() => navigate('/history', { state: { index: location.state.index } })}
+      >
         <Icon icon="left" />
       </Button>
       <div className="detail-page__title">{color.targetEmotion}</div>

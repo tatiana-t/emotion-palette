@@ -1,6 +1,6 @@
 .page-history {
   height: 100%;
-  overflow-y: auto;
+  // overflow-y: autco;
   padding-top: 40px;
   display: grid;
   grid-template-rows: max-content auto;
@@ -19,6 +19,7 @@
     overflow: auto;
   }
   &__item {
+    height: 89px;
     display: block;
     padding: 6px 12px;
     display: flex;

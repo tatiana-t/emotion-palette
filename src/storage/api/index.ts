@@ -27,6 +27,7 @@ const resolveWithMethods = (dbInstance: IDBDatabase, resolveCallback: (apiServic
       const store = getTransactionStore(dbInstance, 'readonly', storeName);
       const list: IColor[] = [];
       // handleRequest<IColor[]>(() => store.openCursor(IDBKeyRange.bound(0, 20), 'prev'), resolve, reject);
+      console.log('range', from, to);
       const request: IDBRequest<IDBCursorWithValue | null> = store.openCursor(IDBKeyRange.bound(from, to), 'prev');
 
       request.onsuccess = () => {

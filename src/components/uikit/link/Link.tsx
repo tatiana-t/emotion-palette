@@ -8,17 +8,18 @@ interface Props {
   text?: string;
   className?: string;
   children?: ReactElement;
+  state?: Record<string, string | number>;
 }
 
-const Link = ({ url, text, className, children }: Props) => {
+const Link = ({ url, text, className, children, state }: Props) => {
   if (children)
     return (
-      <NavLink to={url} className={classnames('ui-link', className)} viewTransition>
+      <NavLink to={url} state={state} className={classnames('ui-link', className)} viewTransition>
         {children}
       </NavLink>
     );
   return (
-    <NavLink to={url} className={classnames('ui-link', className)} viewTransition>
+    <NavLink to={url} state={state} className={classnames('ui-link', className)} viewTransition>
       {text}
     </NavLink>
   );

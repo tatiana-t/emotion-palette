@@ -11,6 +11,8 @@ interface IStoreData {
   currentColor: IColor | null;
   count: number;
 
+  historyScrollPosition: number;
+
   updateToday: (day: Partial<IColor>) => void;
 
   updateField: (fieldId: string, value: string | { id: string; value: string }[]) => void;
@@ -21,6 +23,7 @@ interface IStoreData {
   setHistory: (list: IColor[]) => void;
   setCurrentColor: (color: IColor | null) => void;
   setCount: (count: number) => void;
+  setHistoryScrollPosition: (scrollPosition: number) => void;
 }
 
 const initialState: IInitialState = {
@@ -38,7 +41,7 @@ const useDataStore = create<IStoreData>()(
     today: { ...initialState },
     currentColor: null,
     count: 0,
-
+    historyScrollPosition: 0,
     updateToday: (day) =>
       set((state) => {
         return { today: { ...state.today, ...day } };
@@ -83,6 +86,12 @@ const useDataStore = create<IStoreData>()(
     setCount: (count) => {
       return set(() => {
         return { count };
+      });
+    },
+
+    setHistoryScrollPosition: (historyScrollPosition) => {
+      return set(() => {
+        return { historyScrollPosition };
       });
     },
   })),
