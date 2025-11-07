@@ -106,7 +106,7 @@ const HistoryPage = () => {
             <div className="page-history__color" style={{ backgroundColor: content.color }} />
             <div className="page-history__content">
               <div className="page-history__item-title">{content.targetEmotion}</div>
-              <div className="page-history__text">{content.date}</div>
+              <div className="page-history__date">{content.date}</div>
             </div>
             <svg
               className="page-history__open-button"
@@ -130,30 +130,41 @@ const HistoryPage = () => {
   return (
     <div className="page-history">
       <div className="page-history__title">Палитра настроений</div>
-      <div className="page-history__list" ref={listRef}>
-        <AutoSizer>
-          {({ width, height }) => (
-            <InfiniteLoader isRowLoaded={isRowLoaded} loadMoreRows={loadMoreRows} rowCount={rowsCount}>
-              {({ onRowsRendered, registerChild }) => (
-                <>
-                  <List
-                    ref={registerChild}
-                    onRowsRendered={onRowsRendered}
-                    rowRenderer={rowRenderer}
-                    width={width}
-                    height={height}
-                    rowHeight={ROW_HEIGHT}
-                    rowCount={rowsCount}
-                    onScroll={onScroll}
-                    scrollTop={initialScroll}
-                  />
-                  {isLoading && 'loading...'}
-                </>
-              )}
-            </InfiniteLoader>
-          )}
-        </AutoSizer>
-      </div>
+      {count ? (
+        <div className="page-history__list" ref={listRef}>
+          <AutoSizer>
+            {({ width, height }) => (
+              <InfiniteLoader isRowLoaded={isRowLoaded} loadMoreRows={loadMoreRows} rowCount={rowsCount}>
+                {({ onRowsRendered, registerChild }) => (
+                  <>
+                    <List
+                      ref={registerChild}
+                      onRowsRendered={onRowsRendered}
+                      rowRenderer={rowRenderer}
+                      width={width}
+                      height={height}
+                      rowHeight={ROW_HEIGHT}
+                      rowCount={rowsCount}
+                      onScroll={onScroll}
+                      scrollTop={initialScroll}
+                    />
+                    {isLoading && 'loading...'}
+                  </>
+                )}
+              </InfiniteLoader>
+            )}
+          </AutoSizer>
+        </div>
+      ) : (
+        <div className="page-history__empty">
+          <div className="page-history__group">
+            <div className="page-history__text">Здесь будут отображаться цвета ваших настроений</div>
+            <img className="page-history__empty-pic" src="src/assets/palette.svg" alt="" />
+          </div>
+
+          <div className="page-history__text">Начните заполнять палитру, нажав на плюс</div>
+        </div>
+      )}
     </div>
   );
 };

@@ -6,17 +6,16 @@
 
   padding: 12px 28px 24px;
   line-height: 0;
-  // border-top: 1px solid var(--color-border);
 
   color: var(--color-icon);
   background-color: #ffffff90;
-  // backdrop-filter: blur(6px);
   transition: background-color, 0.2s;
-  box-shadow: -1px 0 10px var(--color-border);
+  filter: drop-shadow(-1px 0 10px var(--color-border));
+
   &__list {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
   a {
     display: inline-flex;
@@ -25,15 +24,17 @@
     color: var(--color-selected-font);
     background-color: var(--color-selected);
   }
-  &__item {
-    &_add {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      background-color: rgba(var(--color-icon-rgb), 0.1);
-    }
-  }
+  // &__item {
+  //   &_add {
+  //     width: 56px;
+  //     height: 56px;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     border-radius: 50%;
+  //     background-color: white;
+  //     position: relative;
+  //     // top: -16px;
+  //   }
+  // }
 }

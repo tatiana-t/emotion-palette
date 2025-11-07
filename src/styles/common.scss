@@ -47,6 +47,7 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   background-color: var(--color-background);
+  color: var(--color-font);
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
   }
@@ -59,17 +60,18 @@ body {
   padding-right: 20px;
   padding-left: 20px;
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
 
-  a:hover {
-    // color: #747bff;
-  }
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
 
-  button {
-    // background-color: #f9f9f9;
-  }
-}
+//   a:hover {
+//     // color: #747bff;
+//   }
+
+//   button {
+//     // background-color: #f9f9f9;
+//   }
+// }
