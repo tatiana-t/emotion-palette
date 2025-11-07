@@ -7,7 +7,7 @@ import { setHistoryFromDB, setTotalCount } from 'src/storage';
 import 'react-virtualized/styles.css';
 import './styles.scss';
 
-const ROW_HEIGHT = 89;
+const ROW_HEIGHT = 76;
 const DEFAULT_ROWS_COUNT = 20;
 
 const HistoryPage = () => {
@@ -25,7 +25,7 @@ const HistoryPage = () => {
       if (!listRef.current) return;
       const scrollPosition = index * ROW_HEIGHT;
       const listHeight = historyList.length * ROW_HEIGHT;
-      const visibleHeight = listRef.current.clientHeight - 40;
+      const visibleHeight = listRef.current.clientHeight - 20;
 
       if (listHeight - scrollPosition < visibleHeight) {
         setInitialScroll(listHeight - visibleHeight);
