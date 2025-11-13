@@ -33,7 +33,7 @@ const EmotionSelect: React.FC = () => {
   return (
     <div className="emotion-select">
       <div className="emotion-select__filter">
-        <input type="text" value={filterValue} onChange={onChangeFilter} placeholder="Фильтр" />
+        <input id="emotion-filter" type="text" value={filterValue} onChange={onChangeFilter} placeholder="Фильтр" />
       </div>
       <div className="emotion-select__list">
         {listToRender.map((group) => {
