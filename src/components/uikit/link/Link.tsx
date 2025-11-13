@@ -8,7 +8,7 @@ interface Props {
   text?: string;
   className?: string;
   children?: ReactElement;
-  state?: Record<string, string | number>;
+  state?: Record<string, string | number | undefined>;
 }
 
 const Link = ({ url, text, className, children, state }: Props) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router';
 import { AutoSizer, InfiniteLoader, List } from 'react-virtualized';
+import type { ListRowProps } from 'react-virtualized';
 import Link from 'src/components/uikit/link';
 import { useDataStore } from 'src/storage';
 import { setHistoryFromDB, setTotalCount } from 'src/storage';
@@ -20,41 +21,28 @@ const HistoryPage = () => {
   const location = useLocation();
   const [initialScroll, setInitialScroll] = useState<number | undefined>(undefined);
 
-  const setScrollPosition = useCallback(
-    (index: number) => {
-      if (!listRef.current) return;
-      const scrollPosition = index * ROW_HEIGHT;
-      const listHeight = historyList.length * ROW_HEIGHT;
-      const visibleHeight = listRef.current.clientHeight - 20;
+  const setScrollPosition = useCallback((scrollTop: number) => {
+    setInitialScroll(scrollTop);
 
-      if (listHeight - scrollPosition < visibleHeight) {
-        setInitialScroll(listHeight - visibleHeight);
-      } else if (scrollPosition > listRef.current.clientHeight - ROW_HEIGHT) {
-        setInitialScroll(scrollPosition);
-      }
-
-      setTimeout(() => {
-        setInitialScroll(undefined);
-      }, 300);
-    },
-    [historyList],
-  );
+    setTimeout(() => {
+      setInitialScroll(undefined);
+    }, 300);
+  }, []);
 
   useEffect(() => {
     setTotalCount();
 
-    if (location.state?.index) {
-      setScrollPosition(location.state.index);
+    if (location.state?.scrollTop) {
+      setScrollPosition(location.state.scrollTop);
       window.history.replaceState(null, '');
     }
   }, [location, setScrollPosition]);
 
   useEffect(() => {
-    if (!rowsCount && count) {
-      const rowsAmount = historyList.length || DEFAULT_ROWS_COUNT;
-      setRowsCount(count > DEFAULT_ROWS_COUNT ? rowsAmount : count);
+    if (count) {
+      setRowsCount(count > DEFAULT_ROWS_COUNT ? DEFAULT_ROWS_COUNT : count);
     }
-  }, [count, rowsCount, historyList]);
+  }, [count]);
 
   const getList = async (limit: number, offset: number) => {
     if (historyList.length === count) return;
@@ -81,6 +69,7 @@ const HistoryPage = () => {
     scrollHeight: number;
     scrollTop: number;
   }) => {
+    setInitialScroll(scrollTop);
     if (count === historyList.length) return;
 
     if (scrollTop === scrollHeight - clientHeight) {
@@ -96,12 +85,12 @@ const HistoryPage = () => {
     return !!historyList[index];
   };
 
-  const rowRenderer = ({ index, key, style }: { index: number; key: string; style: React.CSSProperties }) => {
+  const rowRenderer = ({ index, key, style }: ListRowProps) => {
     const content = historyList[index];
     if (!content) return null;
     return (
       <div key={key} className="" style={style}>
-        <Link url={`/history/${content.colorId}`} state={{ index }} className="page-history__item">
+        <Link url={`/history/${content.colorId}`} state={{ scrollTop: initialScroll }} className="page-history__item">
           <>
             <div className="page-history__color" style={{ backgroundColor: content.color }} />
             <div className="page-history__content">
