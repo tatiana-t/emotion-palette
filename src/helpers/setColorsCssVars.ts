@@ -10,15 +10,13 @@ export const setColorsCssVars = (selectedColor: string | undefined) => {
     return;
   }
 
-  const isDarkColor = chroma(selectedColor).luminance() < 0.7;
-  const fontColor = isDarkColor
-    ? chroma(selectedColor).brighten(3).saturate(1).hex()
-    : chroma(selectedColor).darken(2.6).saturate(2).hex();
+  const luminance = Number(chroma(selectedColor).luminance().toFixed(1));
+  let fontColor: string;
 
-  if (isDarkColor) {
-    document.querySelector('.app')?.classList.remove('theme_dark');
+  if (luminance <= 0.6) {
+    fontColor = '#ffffff';
   } else {
-    document.querySelector('.app')?.classList.add('theme_dark');
+    fontColor = chroma(selectedColor).darken(2.6).saturate(2).hex(); //'#444444';
   }
 
   appEl.style.setProperty('--color-selected', selectedColor);

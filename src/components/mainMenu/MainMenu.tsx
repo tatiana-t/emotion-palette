@@ -25,7 +25,7 @@ const MainMenu = () => {
           </Link>
         </div>
         <div className="main-menu__item main-menu__item_add">
-          <Link url="/">
+          <Link url="/?id=color">
             <Icon icon="plus" />
           </Link>
         </div>
