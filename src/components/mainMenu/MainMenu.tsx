@@ -20,8 +20,8 @@ const MainMenu = () => {
     >
       <div className="main-menu__list">
         <div className="main-menu__item">
-          <Link url="/history">
-            <Icon icon="history" />
+          <Link url="/about">
+            <Icon icon="i" />
           </Link>
         </div>
         <div className="main-menu__item main-menu__item_add">
@@ -30,8 +30,8 @@ const MainMenu = () => {
           </Link>
         </div>
         <div className="main-menu__item">
-          <Link url="/about">
-            <Icon icon="i" />
+          <Link url="/history">
+            <Icon icon="history" />
           </Link>
         </div>
       </div>
