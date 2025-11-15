@@ -1,9 +1,13 @@
 import type { IQuestion } from 'src/types';
 
 const questionsList: IQuestion[] = [
-  { id: 'Reflection1', text: 'Какие у вас ассоциации с выбранным цветом?' },
-  { id: 'Reflection2', text: 'Что этот цвет хочет вам сказать?' },
-  { id: 'Reflection3', text: 'Какое настроение у этого цвета?' },
+  {
+    id: 'ReflectionBody',
+    text: 'Что вы почувствуете, если соприкоснетесь с этим цветом? Если он окутает или наполнит ваше тело?',
+  },
+  { id: 'ReflectionAssociation', text: 'Какие у вас ассоциации с выбранным цветом?' },
+  { id: 'ReflectionSay', text: 'Что этот цвет может вам сказать?' },
+  // { id: 'ReflectionMood', text: 'Какое настроение у этого цвета?' },
 ];
 
 export default questionsList;

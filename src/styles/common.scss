@@ -19,7 +19,6 @@
   --scrollbar-color-track: transparent;
   --scrollbar-width: thin;
   --scrollbar-width-legacy: 6px;
-
   /* Legacy browsers with `::-webkit-scrollbar-*` support */
   @supports selector(::-webkit-scrollbar) {
     ::-webkit-scrollbar-thumb {
@@ -48,6 +47,7 @@ body {
   align-items: flex-start;
   background-color: var(--color-background);
   color: var(--color-font);
+  overscroll-behavior: none;
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
   }
