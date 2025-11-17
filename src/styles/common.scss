@@ -37,6 +37,7 @@
 
 #root {
   width: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -48,6 +49,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-font);
   overscroll-behavior: none;
+  overflow: hidden;
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
   }
