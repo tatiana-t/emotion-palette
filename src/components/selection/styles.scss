@@ -1,21 +1,22 @@
 .selection {
   width: 100%;
   &__item {
+    width: 100%;
     padding: 8px 12px;
     text-align: center;
 
     border-radius: var(--control-radius);
-
+    font-size: inherit;
     color: var(--color-font);
     background-color: white;
+    border: 2px solid transparent;
     margin-bottom: 8px;
     transition: background-color, 0.2s;
     &:last-child {
       margin-bottom: 0;
     }
     &_active {
-      color: var(--color-selected-font);
-      background-color: var(--color-selected);
+      @include selected-button();
     }
   }
 }

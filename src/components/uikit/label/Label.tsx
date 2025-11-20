@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import './styles.scss';
 
-interface Props {
+export interface Props {
   text: string;
   forId: string;
   className?: string;

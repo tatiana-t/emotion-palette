@@ -37,7 +37,6 @@
 
 #root {
   width: 100%;
-  overflow: hidden;
 }
 
 body {
@@ -46,10 +45,11 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: var(--color-background);
+  background-color: var(--color-selected, var(--color-background));
   color: var(--color-font);
   overscroll-behavior: none;
-  overflow: hidden;
+  transition: background-color, 0.4s;
+  font-size: 18px;
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
   }

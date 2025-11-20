@@ -23,7 +23,7 @@ const Selection = ({ id, options }: Props) => {
     <div className="selection">
       {options.map((item) => {
         return (
-          <div
+          <button
             key={item.id}
             className={classnames('selection__item', {
               selection__item_active: item.id === value,
@@ -32,7 +32,7 @@ const Selection = ({ id, options }: Props) => {
             onClick={() => onClick(item.id)}
           >
             {item.text}
-          </div>
+          </button>
         );
       })}
     </div>

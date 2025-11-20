@@ -1,0 +1,11 @@
+.textarea-labeled {
+  //   position: relative;
+  background-color: #fff;
+  border-radius: var(--control-radius);
+  &__label {
+    padding: 8px 8px 0;
+    margin-bottom: 0;
+  }
+  &__field {
+  }
+}

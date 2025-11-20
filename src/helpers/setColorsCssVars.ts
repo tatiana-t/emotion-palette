@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 
 export const setColorsCssVars = (selectedColor: string | undefined) => {
-  const appEl: HTMLElement | null = document.querySelector('.app');
+  const appEl: HTMLElement | null = document.documentElement;
   if (!appEl) return;
 
   if (!selectedColor) {

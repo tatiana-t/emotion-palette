@@ -32,3 +32,9 @@
   line-height: 0;
   background-color: #fff;
 }
+
+@mixin selected-button {
+  color: var(--color-selected-font);
+  border-color: var(--color-selected-font);
+  background-color: var(--color-selected, white);
+}

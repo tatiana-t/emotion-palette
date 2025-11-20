@@ -6,7 +6,7 @@
   }
   &__item_next {
     flex-grow: 1;
-    color: var(--color-selected-font, --color-font);
-    background-color: var(--color-selected, white);
+    // color: var(--color-selected-font, --color-font);
+    background-color: white;
   }
 }

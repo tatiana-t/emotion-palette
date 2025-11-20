@@ -1,5 +1,4 @@
-import Textarea from 'src/components/uikit/textarea';
-import Label from 'src/components/uikit/label';
+import TextareaLabeled from 'src/components/uikit/textareaLabeled';
 import { useDataStore } from 'src/storage';
 import type { IText, IIds } from 'src/types';
 import './styles.scss';
@@ -40,15 +39,15 @@ const Multitext = ({ id, list }: Props) => {
     <div className="multi-text">
       {list.map((item) => {
         return (
-          <div key={item.id} className="multi-text__item">
-            <Label forId={item.id} text={item.text} className="multi-text__label" />
-            <Textarea
-              name={id}
-              id={item.id}
-              onChange={(e) => onChange(item.id, e.target.value)}
-              value={values.find((value) => value.id === item.id)?.value || ''}
-            />
-          </div>
+          <TextareaLabeled
+            key={item.id}
+            className="multi-text__item"
+            name={id}
+            id={item.id}
+            onChange={(e) => onChange(item.id, e.target.value)}
+            text={item.text}
+            value={values.find((value) => value.id === item.id)?.value || ''}
+          />
         );
       })}
     </div>

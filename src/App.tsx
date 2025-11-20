@@ -20,7 +20,7 @@ function App() {
   }, [selectedColor, colorItem?.color]);
 
   return (
-    <div className="app theme_dark">
+    <div className="app">
       <div className="app__content">
         <Routes>
           <Route index element={<CreatePage />}></Route>
