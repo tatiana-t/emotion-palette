@@ -1,23 +1,11 @@
-import { useLocation } from 'react-router';
-import classnames from 'classnames';
 import Link from 'src/components/uikit/link';
 import Icon from 'src/components/uikit/icon';
 
 import './styles.scss';
 
 const MainMenu = () => {
-  const location = useLocation();
-
-  // if (location.pathname === '/') {
-  //   return null;
-  // }
-
   return (
-    <div
-      className={classnames('main-menu', {
-        'main-menu_colored': location.pathname.split('/').length > 2,
-      })}
-    >
+    <div className="main-menu">
       <div className="main-menu__list">
         <div className="main-menu__item">
           <Link url="/about">

@@ -4,6 +4,7 @@ import SCREEN_IDS from 'src/data/screenIds';
 export interface IQuestion {
   id: string;
   text: string;
+  disabled?: boolean;
 }
 
 export interface IQAnswer {
@@ -47,7 +48,7 @@ export interface IText {
 }
 export interface IMultiTextScreen extends IScreenCommonFields {
   type: 'multitext';
-  list: IText[];
+  list: IQuestion[];
 }
 
 export interface IExternalComponentScreen extends IScreenCommonFields {

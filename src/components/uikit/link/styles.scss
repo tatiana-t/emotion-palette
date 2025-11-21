@@ -1,7 +1,8 @@
 .ui-link {
   &.active {
-    svg {
-      opacity: 0.6;
-    }
+    color: var(--color-font);
+    // svg {
+    //   fill:
+    // }
   }
 }

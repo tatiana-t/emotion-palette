@@ -32,8 +32,8 @@
     display: inline-flex;
   }
   &_colored {
-    color: var(--color-selected-font);
-    background-color: var(--color-selected);
+    // color: var(--color-font);
+    // background-color: var(--color-selected);
   }
   &__item {
     &:not(&_add) {
