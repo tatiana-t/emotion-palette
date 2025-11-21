@@ -1,21 +1,32 @@
 .main-menu {
-  // position: absolute;
+  position: relative;
   // bottom: 0;
   // left: 0;
   // width: 100%;
 
-  padding: 12px 28px 24px;
+  // padding: 12px 28px 24px;
+  // padding: 0 28px 24px;
+  padding-top: 22px;
   line-height: 0;
 
   color: var(--color-icon);
-  background-color: #ffffff90;
+
   transition: background-color, 0.2s;
-  filter: drop-shadow(-1px 0 10px var(--color-border));
+  filter: drop-shadow(-1px 0 7px rgba(0, 0, 0, 0.1));
 
   &__list {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    padding: 0 28px 24px;
+    background-color: #ffffff90;
+    background: radial-gradient(
+      40px 40px at 50% 5px,
+      transparent 39.5px,
+      rgba(255, 255, 255, 0.9) 40.5px
+    ); /* use same center point as with concentric circles but larger radius */
+    // backdrop-filter: blur(10px);
   }
   a {
     display: inline-flex;
@@ -24,17 +35,20 @@
     color: var(--color-selected-font);
     background-color: var(--color-selected);
   }
-  // &__item {
-  //   &_add {
-  //     width: 56px;
-  //     height: 56px;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     border-radius: 50%;
-  //     background-color: white;
-  //     position: relative;
-  //     // top: -16px;
-  //   }
-  // }
+  &__item {
+    &:not(&_add) {
+      padding-top: 12px;
+    }
+    &_add a {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: white;
+      position: relative;
+      top: -22px;
+    }
+  }
 }
