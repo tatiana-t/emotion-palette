@@ -118,7 +118,7 @@ const HistoryPage = () => {
 
   return (
     <div className="page-history">
-      <div className="page-history__title">Палитра настроений</div>
+      <div className="page-history__title">Палитра настроения</div>
       {count ? (
         <div className="page-history__list" ref={listRef}>
           <AutoSizer>
