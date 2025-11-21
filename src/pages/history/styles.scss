@@ -1,13 +1,13 @@
 .page-history {
   height: 100%;
   // overflow-y: autco;
-  padding-top: 40px;
+  padding-top: 20px;
   display: grid;
   grid-template-rows: max-content auto;
   gap: 6px;
   &__title {
-    font-size: 28px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
     text-align: center;
   }
 
