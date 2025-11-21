@@ -6,7 +6,7 @@
 
   // padding: 12px 28px 24px;
   // padding: 0 28px 24px;
-  padding-top: 22px;
+  // padding-top: 22px;
   line-height: 0;
 
   color: var(--color-icon);
@@ -30,10 +30,6 @@
   }
   a {
     display: inline-flex;
-  }
-  &_colored {
-    // color: var(--color-font);
-    // background-color: var(--color-selected);
   }
   &__item {
     &:not(&_add) {

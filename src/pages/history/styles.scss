@@ -48,8 +48,11 @@
   &__item-title {
     font-size: 18px;
     line-height: 20px;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 8px;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   &__date {
     font-size: 14px;
