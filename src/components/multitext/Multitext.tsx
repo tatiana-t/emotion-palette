@@ -1,12 +1,12 @@
 import TextareaLabeled from 'src/components/uikit/textareaLabeled';
 import { useDataStore } from 'src/storage';
-import type { IText, IIds } from 'src/types';
+import type { IQuestion, IIds } from 'src/types';
 import './styles.scss';
 // type IListItem = IText & { value: string };
 
 interface Props {
   id: IIds;
-  list: IText[];
+  list: IQuestion[];
 }
 
 const Multitext = ({ id, list }: Props) => {
@@ -38,6 +38,9 @@ const Multitext = ({ id, list }: Props) => {
   return (
     <div className="multi-text">
       {list.map((item) => {
+        if (item.disabled) {
+          return null;
+        }
         return (
           <TextareaLabeled
             key={item.id}
