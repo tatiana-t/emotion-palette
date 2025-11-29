@@ -49,6 +49,7 @@ body {
   color: var(--color-font);
   overscroll-behavior: none;
   transition: background-color, 0.4s;
+  transition-delay: 0.1s;
   font-size: 18px;
   &.g-root {
     font-size: var(--g-text-body-2-font-size);
